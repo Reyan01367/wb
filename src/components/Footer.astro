@@ -1,0 +1,140 @@
+---
+import { site } from '../data/site';
+import Pulse from './Pulse.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer dark" id="contact">
+  <div class="wrap">
+    <p class="mono eyebrow">Contact</p>
+
+    <h2 class="footer__title display" data-split>
+      Let’s make the healthy choice <span class="serif accent">the easy one.</span>
+    </h2>
+
+    <a class="footer__email" href={`mailto:${site.email}`} data-cursor="Email" data-reveal>
+      <span>{site.email}</span>
+      <span class="arrow">→</span>
+    </a>
+
+    <div class="footer__ecg"><Pulse mode="draw" /></div>
+
+    <div class="footer__grid" data-reveal>
+      <div>
+        <p class="mono muted">Elsewhere</p>
+        <ul>
+          {site.socials.map((s) => <li><a href={s.href} target="_blank" rel="noopener">{s.label} ↗</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="mono muted">Documents</p>
+        <ul>
+          {site.documents.map((d) => <li><a href={d.href} target="_blank" rel="noopener">{d.label} ↓</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="mono muted">Based in</p>
+        <p>{site.location}</p>
+        <p class="mono muted footer__clock">Local time <span data-clock>--:--</span></p>
+      </div>
+      <div class="footer__top">
+        <button class="btn" type="button" data-scroll-top data-magnetic>Back to top <span class="arrow">↑</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__mark" aria-hidden="true" data-wordmark>{site.firstName}</div>
+
+  <div class="wrap footer__legal mono muted">
+    <span>© {year} {site.name}</span>
+    <span>Student spec work — not affiliated with the brands shown.</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    padding-top: clamp(100px, 14vw, 200px);
+    overflow: hidden;
+  }
+
+  .footer__title {
+    max-width: 14ch;
+  }
+
+  .footer__email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: clamp(32px, 5vw, 64px);
+    font-size: var(--step-2);
+    letter-spacing: -0.03em;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.15em;
+    transition: border-color 0.4s;
+    word-break: break-all;
+  }
+
+  .footer__email:hover {
+    border-color: var(--accent);
+  }
+
+  .footer__ecg {
+    margin-block: clamp(48px, 8vw, 120px);
+    color: var(--accent);
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+
+  .footer__grid p.mono {
+    margin-bottom: 12px;
+  }
+
+  .footer__grid a:hover {
+    color: var(--accent);
+  }
+
+  .footer__clock {
+    margin-top: 6px;
+  }
+
+  .footer__top {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  .footer__mark {
+    margin-top: clamp(60px, 10vw, 140px);
+    font-size: 27vw;
+    font-weight: 700;
+    letter-spacing: -0.07em;
+    line-height: 0.72;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--paper);
+  }
+
+  .footer__legal {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-block: 28px;
+  }
+
+  @media (max-width: 800px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer__top {
+      justify-content: flex-start;
+    }
+  }
+</style>

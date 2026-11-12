@@ -1,0 +1,216 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+
+<Base title="About" description={site.bio[0]}>
+  <section class="ab">
+    <div class="wrap ab__hero">
+      <p class="mono eyebrow" data-reveal>About</p>
+      <h1 class="ab__title" data-split>
+        I make the healthy choice <span class="serif accent">the easy one.</span>
+      </h1>
+    </div>
+
+    <div class="wrap ab__grid">
+      <div class="ab__portrait" data-reveal data-speed="0.08">
+        {
+          site.portrait ? (
+            <img src={site.portrait} alt={`Portrait of ${site.name}`} />
+          ) : (
+            <span class="ab__initials serif">{site.initials}</span>
+          )
+        }
+      </div>
+
+      <div class="ab__bio">
+        {site.bio.map((p) => <p data-reveal>{p}</p>)}
+        <div class="ab__actions" data-reveal>
+          {
+            site.documents.map((d) => (
+              <a href={d.href} class="btn" target="_blank" rel="noopener" data-magnetic>
+                {d.label} <span class="arrow">↓</span>
+              </a>
+            ))
+          }
+          <a href={site.socials[0].href} class="btn btn--accent" target="_blank" rel="noopener" data-magnetic>
+            LinkedIn <span class="arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark">
+    <div class="wrap lists">
+      <div>
+        <p class="mono eyebrow">Expertise</p>
+        <ul class="big-list">
+          {site.expertise.map((e) => <li data-reveal>{e}</li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="mono eyebrow">Toolkit</p>
+        <ul class="chips" data-reveal>
+          {site.toolkit.map((t) => <li>{t}</li>)}
+        </ul>
+
+        <p class="mono eyebrow edu-title">Education</p>
+        <ul class="rows">
+          {
+            site.education.map((e) => (
+              <li data-reveal>
+                <span class="mono muted">{e.years}</span>
+                <span>
+                  <strong>{e.title}</strong>
+                  <br />
+                  <span class="muted">{e.place}</span>
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="mono eyebrow">Awards & recognition</p>
+      <ul class="rows rows--awards">
+        {
+          site.awards.map((a) => (
+            <li data-reveal>
+              <span class="mono muted">{a.year}</span>
+              <span class="rows__big">{a.title}</span>
+              <span class="muted">{a.org}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ab {
+    padding-top: 120px;
+    padding-bottom: clamp(80px, 12vw, 160px);
+  }
+
+  .ab__title {
+    font-size: var(--step-4);
+    font-weight: 600;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    max-width: 14ch;
+  }
+
+  .ab__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: clamp(32px, 6vw, 120px);
+    margin-top: clamp(48px, 8vw, 120px);
+    align-items: start;
+  }
+
+  .ab__portrait {
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(70% 60% at 30% 20%, rgb(255 75 31 / 0.9), transparent 70%),
+      var(--ink);
+    color: var(--paper);
+  }
+
+  .ab__portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ab__initials {
+    font-size: clamp(6rem, 18vw, 16rem);
+    line-height: 1;
+  }
+
+  .ab__bio {
+    display: grid;
+    gap: 1.1em;
+    font-size: var(--step-1);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .ab__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 1em;
+    font-size: var(--step-0);
+  }
+
+  .lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(48px, 6vw, 120px);
+  }
+
+  .big-list li {
+    padding-block: 14px;
+    border-top: 1px solid var(--line);
+    font-size: var(--step-2);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chips li {
+    padding: 0.5em 1em;
+    border: 1px solid var(--line);
+    border-radius: 99px;
+  }
+
+  .edu-title {
+    margin-top: clamp(48px, 6vw, 80px);
+  }
+
+  .rows li {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    padding-block: 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  .rows--awards li {
+    grid-template-columns: 120px 1fr auto;
+    align-items: baseline;
+  }
+
+  .rows__big {
+    font-size: var(--step-1);
+    font-weight: 500;
+  }
+
+  @media (max-width: 800px) {
+    .ab__grid,
+    .lists {
+      grid-template-columns: 1fr;
+    }
+
+    .rows--awards li {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+  }
+</style>

@@ -1,0 +1,91 @@
+---
+import PosterArt from '../PosterArt.astro';
+import type { Execution, PosterVariant } from '../../data/types';
+
+interface Props {
+  items: Execution[];
+  variant: PosterVariant;
+}
+
+const { items, variant } = Astro.props;
+
+const isWide = (e: Execution) => e.ratio === '3/1' || e.ratio === '16/10';
+---
+
+<div class="execs">
+  {
+    items.map((e) => (
+      <article class:list={['exec', { 'exec--wide': isWide(e), 'exec--tall': e.ratio === '9/16' }]} data-reveal>
+        <div class="exec__visual" data-cursor={e.channel.split(' ')[0]}>
+          <PosterArt variant={variant} ratio={e.ratio} headline={e.headline} sub={e.sub} image={e.image} />
+        </div>
+        <div class="exec__info">
+          <p class="mono muted">{e.channel}</p>
+          <h3 class="exec__title">{e.title}</h3>
+          <p class="exec__desc">{e.description}</p>
+          <p class="exec__credit mono">{e.credit}</p>
+        </div>
+      </article>
+    ))
+  }
+</div>
+
+<style>
+  .execs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(40px, 5vw, 72px) clamp(16px, 2.4vw, 36px);
+    align-items: start;
+  }
+
+  .exec--wide {
+    grid-column: 1 / -1;
+  }
+
+  .exec--tall .exec__visual {
+    max-width: 70%;
+  }
+
+  .exec__visual :global(.poster) {
+    transition: transform 0.8s var(--ease-out);
+  }
+
+  .exec__visual:hover :global(.poster) {
+    transform: scale(0.985);
+  }
+
+  .exec__info {
+    display: grid;
+    gap: 8px;
+    margin-top: 18px;
+  }
+
+  .exec__title {
+    font-size: var(--step-1);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .exec__desc {
+    max-width: 52ch;
+  }
+
+  .exec__credit {
+    justify-self: start;
+    margin-top: 4px;
+    padding: 0.4em 0.8em;
+    border-radius: 99px;
+    border: 1px solid var(--line);
+    text-transform: none;
+  }
+
+  @media (max-width: 800px) {
+    .execs {
+      grid-template-columns: 1fr;
+    }
+
+    .exec--tall .exec__visual {
+      max-width: none;
+    }
+  }
+</style>

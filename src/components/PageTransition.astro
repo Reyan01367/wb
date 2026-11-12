@@ -1,0 +1,29 @@
+---
+import { site } from '../data/site';
+---
+
+<div class="pt" data-pt aria-hidden="true">
+  <span class="pt__mark serif">{site.name}</span>
+</div>
+
+<style>
+  .pt {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    display: grid;
+    place-items: center;
+    background: var(--accent);
+    color: var(--ink);
+    transform: translateY(100%);
+    pointer-events: none;
+  }
+
+  :global(.is-entering) .pt {
+    transform: none;
+  }
+
+  .pt__mark {
+    font-size: var(--step-3);
+  }
+</style>

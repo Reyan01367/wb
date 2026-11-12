@@ -1,0 +1,84 @@
+---
+import type { Campaign } from '../../data/types';
+
+interface Props {
+  research: Campaign['research'];
+}
+
+const { research } = Astro.props;
+
+const columns = [
+  { key: 'market', label: 'Market' },
+  { key: 'audience', label: 'Audience' },
+  { key: 'trend', label: 'Trend' },
+] as const;
+---
+
+<div class="research">
+  {
+    columns.map((col) => (
+      <div class="research__col">
+        <h3 class="mono research__label">{col.label}</h3>
+        {research[col.key].map((point) => (
+          <article class="point" data-reveal>
+            {point.stat && <p class="point__stat" data-count={point.stat}>{point.stat}</p>}
+            <p class="point__text">{point.text}</p>
+            <p class="point__source mono">({point.source})</p>
+          </article>
+        ))}
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .research {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2vw, 28px);
+  }
+
+  .research__label {
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .research__col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .point {
+    display: grid;
+    gap: 10px;
+    padding: clamp(18px, 2vw, 28px);
+    border-radius: var(--radius);
+    background: var(--paper-2);
+  }
+
+  .point__stat {
+    font-size: var(--step-3);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .point__text {
+    line-height: 1.4;
+  }
+
+  .point__source {
+    color: var(--muted);
+    text-transform: none;
+  }
+
+  @media (max-width: 900px) {
+    .research {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

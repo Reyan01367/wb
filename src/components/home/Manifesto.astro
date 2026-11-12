@@ -1,0 +1,24 @@
+---
+import { site } from '../../data/site';
+
+const words = site.manifesto.split(' ');
+---
+
+<section class="section manifesto">
+  <div class="wrap">
+    <p class="mono eyebrow">Point of view</p>
+    <p class="manifesto__text" data-manifesto aria-label={site.manifesto}>
+      {words.map((word) => <span class="manifesto-word" aria-hidden="true">{word} </span>)}
+    </p>
+  </div>
+</section>
+
+<style>
+  .manifesto__text {
+    font-size: var(--step-3);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    max-width: 22ch;
+  }
+</style>

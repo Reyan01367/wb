@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import Pulse from '../components/Pulse.astro';
+---
+
+<Base title="Page not found">
+  <section class="nf wrap">
+    <p class="mono eyebrow">Error 404</p>
+    <h1 class="display">Flatline. <span class="serif accent">This page doesn’t exist.</span></h1>
+    <div class="nf__line"><Pulse mode="loop" /></div>
+    <a href="/" class="btn" data-magnetic>Back to home <span class="arrow">→</span></a>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    min-height: 90svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 32px;
+    padding-top: 120px;
+  }
+
+  .nf h1 {
+    max-width: 12ch;
+  }
+
+  .nf__line {
+    width: 100%;
+    color: var(--accent);
+  }
+</style>

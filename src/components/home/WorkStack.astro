@@ -1,0 +1,171 @@
+---
+import PosterArt from '../PosterArt.astro';
+import { campaigns } from '../../data/campaigns';
+---
+
+<section class="work" id="work">
+  <div class="wrap work__head">
+    <p class="mono eyebrow">Selected work — 03</p>
+    <h2 class="display" data-split>Three campaigns. <span class="serif">One question:</span> why don’t people do what they know they should?</h2>
+  </div>
+
+  <div class="wrap work__stack">
+    {
+      campaigns.map((c) => (
+        <article class="card" data-stack-card>
+          <a href={`/work/${c.slug}`} class="card__link" data-cursor="View">
+            <div class="card__info">
+              <div class="card__meta mono">
+                <span>{c.index}</span>
+                <span>{c.briefProject}</span>
+              </div>
+              <h3 class="card__title">{c.title}</h3>
+              <p class="card__brand mono">{c.brand} · {c.sector}</p>
+              <p class="card__summary">{c.summary}</p>
+              <span class="btn card__btn">
+                View case study <span class="arrow">→</span>
+              </span>
+            </div>
+            <div class="card__visual">
+              <PosterArt
+                variant={c.variant}
+                ratio="4/5"
+                headline={c.idea.line}
+                sub={c.title}
+                image={c.cover}
+              />
+            </div>
+          </a>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .work {
+    padding-bottom: clamp(80px, 12vw, 160px);
+  }
+
+  .work__head {
+    padding-bottom: clamp(48px, 8vw, 120px);
+  }
+
+  .work__head h2 {
+    max-width: 18ch;
+  }
+
+  .work__stack {
+    display: grid;
+    gap: 6vh;
+  }
+
+  .card {
+    position: sticky;
+    top: 9vh;
+    transform-origin: 50% 0;
+  }
+
+  .card__link {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(24px, 4vw, 64px);
+    align-items: stretch;
+    padding: clamp(18px, 2.4vw, 36px);
+    border-radius: calc(var(--radius) * 1.4);
+    background: var(--ink);
+    color: var(--paper);
+    min-height: 82vh;
+    --line: rgb(239 235 227 / 0.16);
+  }
+
+  .card__info {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: clamp(4px, 1vw, 16px);
+  }
+
+  .card__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    color: #9b968b;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 14px;
+  }
+
+  .card__title {
+    margin-top: auto;
+    font-size: var(--step-4);
+    font-weight: 600;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+  }
+
+  .card__brand {
+    color: var(--accent);
+  }
+
+  .card__summary {
+    max-width: 44ch;
+    color: #c9c4b9;
+  }
+
+  .card__btn {
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+
+  .card__link:hover .card__btn {
+    color: var(--ink);
+  }
+
+  .card__link:hover .card__btn::before {
+    transform: translateY(0);
+    background: var(--paper);
+  }
+
+  .card__visual {
+    display: flex;
+    align-items: center;
+  }
+
+  .card__visual :global(.poster) {
+    height: 100%;
+    max-height: 76vh;
+    width: auto;
+    margin-left: auto;
+    transition: transform 0.9s var(--ease-out);
+  }
+
+  .card__link:hover .card__visual :global(.poster) {
+    transform: scale(0.97) rotate(-1deg);
+  }
+
+  @media (max-width: 900px) {
+    .card {
+      position: relative;
+      top: auto;
+    }
+
+    .card__link {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+
+    .card__visual {
+      order: -1;
+    }
+
+    .card__visual :global(.poster) {
+      width: 100%;
+      height: auto;
+      max-height: none;
+    }
+
+    .card__title {
+      margin-top: 8px;
+    }
+  }
+</style>

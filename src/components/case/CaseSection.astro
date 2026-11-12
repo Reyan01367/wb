@@ -1,0 +1,61 @@
+---
+/** Numbered case-study section with a sticky label column. */
+interface Props {
+  id: string;
+  index: string;
+  label: string;
+  title?: string;
+  dark?: boolean;
+}
+
+const { id, index, label, title, dark = false } = Astro.props;
+---
+
+<section id={id} class:list={['cs', { dark }]} data-case-section>
+  <div class="wrap cs__grid">
+    <div class="cs__label">
+      <p class="mono"><span class="accent">{index}</span> — {label}</p>
+    </div>
+    <div class="cs__body">
+      {title && <h2 class="h2 cs__title" data-split>{title}</h2>}
+      <slot />
+    </div>
+  </div>
+</section>
+
+<style>
+  .cs {
+    padding-block: clamp(72px, 10vw, 150px);
+    border-top: 1px solid var(--line);
+  }
+
+  .cs.dark {
+    border-top: 0;
+  }
+
+  .cs__grid {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) 3fr;
+    gap: clamp(24px, 4vw, 64px);
+  }
+
+  .cs__label p {
+    position: sticky;
+    top: 96px;
+  }
+
+  .cs__title {
+    max-width: 20ch;
+    margin-bottom: clamp(32px, 5vw, 64px);
+  }
+
+  @media (max-width: 800px) {
+    .cs__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cs__label p {
+      position: static;
+    }
+  }
+</style>

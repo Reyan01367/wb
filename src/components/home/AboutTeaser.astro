@@ -1,0 +1,95 @@
+---
+import { site } from '../../data/site';
+---
+
+<section class="about section">
+  <div class="wrap about__grid">
+    <div>
+      <p class="mono eyebrow">About</p>
+      <h2 class="h2" data-split>Advertising brain. <span class="serif accent">Healthcare heart.</span></h2>
+    </div>
+
+    <div class="about__body">
+      {site.bio.slice(0, 2).map((p) => <p data-reveal>{p}</p>)}
+      <a href="/about" class="btn" data-magnetic>More about me <span class="arrow">→</span></a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <p class="mono eyebrow about__awards-title">Recognition</p>
+    <ul class="awards">
+      {
+        site.awards.map((a) => (
+          <li class="award" data-reveal>
+            <span class="mono muted">{a.year}</span>
+            <span class="award__title">{a.title}</span>
+            <span class="muted">{a.org}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 6vw, 120px);
+  }
+
+  .about__body {
+    display: grid;
+    gap: 1.2em;
+    align-content: start;
+    font-size: var(--step-1);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .about__body .btn {
+    justify-self: start;
+    font-size: var(--step-0);
+    margin-top: 0.6em;
+  }
+
+  .about__awards-title {
+    margin-top: clamp(80px, 10vw, 160px);
+  }
+
+  .award {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+    padding-block: 22px;
+    border-top: 1px solid var(--line);
+    transition: padding 0.5s var(--ease-out), color 0.3s;
+  }
+
+  .award:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .award:hover {
+    padding-left: 16px;
+    color: var(--accent);
+  }
+
+  .award__title {
+    font-size: var(--step-1);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  @media (max-width: 800px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .award {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+  }
+</style>

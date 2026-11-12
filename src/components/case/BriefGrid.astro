@@ -1,0 +1,76 @@
+---
+import type { Campaign } from '../../data/types';
+
+interface Props {
+  brief: Campaign['brief'];
+}
+
+const { brief } = Astro.props;
+
+const steps = [
+  { key: 'behaviour', label: 'Behaviour' },
+  { key: 'audience', label: 'Audience' },
+  { key: 'barrier', label: 'Barrier' },
+  { key: 'trigger', label: 'Trigger' },
+  { key: 'idea', label: 'Idea' },
+  { key: 'action', label: 'Action' },
+  { key: 'measurement', label: 'Measurement' },
+] as const;
+---
+
+<ol class="brief">
+  {
+    steps.map((step, i) => (
+      <li class="brief__item" data-reveal>
+        <span class="brief__num mono">{String(i + 1).padStart(2, '0')}</span>
+        <h3 class="brief__label">{step.label}</h3>
+        <p class="brief__text">{brief[step.key]}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .brief {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .brief__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 16px;
+    padding: clamp(20px, 2.2vw, 30px);
+    border-radius: var(--radius);
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+  }
+
+  .brief__item:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .brief__num {
+    color: var(--accent);
+    padding-top: 0.3em;
+  }
+
+  .brief__label {
+    font-size: var(--step-1);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+
+  .brief__text {
+    grid-column: 2;
+    color: #c9c4b9;
+  }
+
+  @media (max-width: 800px) {
+    .brief {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

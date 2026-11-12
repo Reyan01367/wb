@@ -1,0 +1,115 @@
+---
+import type { AiLogEntry } from '../../data/types';
+
+interface Props {
+  references: string[];
+  aiLog: AiLogEntry[];
+}
+
+const { references, aiLog } = Astro.props;
+const sorted = [...references].sort((a, b) => a.localeCompare(b));
+---
+
+<div class="sources">
+  <details open>
+    <summary class="mono">References (Harvard) <span>{sorted.length}</span></summary>
+    <ol class="refs">
+      {sorted.map((ref) => <li>{ref}</li>)}
+    </ol>
+  </details>
+
+  <details>
+    <summary class="mono">AI log <span>{aiLog.length}</span></summary>
+    <div class="table-scroll">
+      <table class="ai">
+        <thead>
+          <tr><th>Name of tool</th><th>Usage</th><th>Link to platform</th></tr>
+        </thead>
+        <tbody>
+          {
+            aiLog.map((row) => (
+              <tr>
+                <td>{row.tool}</td>
+                <td>{row.usage}</td>
+                <td><a href={row.link} target="_blank" rel="noopener">{row.link.replace(/^https?:\/\//, '')}</a></td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </details>
+</div>
+
+<style>
+  .sources {
+    display: grid;
+    gap: 12px;
+  }
+
+  details {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: clamp(18px, 2vw, 28px);
+  }
+
+  summary {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary span {
+    color: var(--accent);
+  }
+
+  .refs {
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+    font-size: var(--step--1);
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+
+  .refs li {
+    padding-left: 2em;
+    text-indent: -2em;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    margin-top: 20px;
+  }
+
+  .ai {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--step--1);
+  }
+
+  .ai th,
+  .ai td {
+    text-align: left;
+    padding: 10px 12px 10px 0;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  .ai th {
+    font-family: var(--font-mono);
+    font-weight: 400;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .ai a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/home/Hero.astro';
+import Marquee from '../components/home/Marquee.astro';
+import Manifesto from '../components/home/Manifesto.astro';
+import WorkStack from '../components/home/WorkStack.astro';
+import Method from '../components/home/Method.astro';
+import IntroFilm from '../components/home/IntroFilm.astro';
+import AboutTeaser from '../components/home/AboutTeaser.astro';
+
+const marquee = [
+  'Behaviour change',
+  'Health communication',
+  'Creative strategy',
+  'Social marketing',
+  'Art direction',
+  'COM-B',
+];
+---
+
+<Base preload>
+  <Hero />
+  <Marquee items={marquee} />
+  <Manifesto />
+  <WorkStack />
+  <Method />
+  <IntroFilm />
+  <AboutTeaser />
+</Base>

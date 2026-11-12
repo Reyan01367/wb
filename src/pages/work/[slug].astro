@@ -1,0 +1,309 @@
+---
+import Base from '../../layouts/Base.astro';
+import PosterArt from '../../components/PosterArt.astro';
+import CaseSection from '../../components/case/CaseSection.astro';
+import Research from '../../components/case/Research.astro';
+import ComB from '../../components/case/ComB.astro';
+import BriefGrid from '../../components/case/BriefGrid.astro';
+import Executions from '../../components/case/Executions.astro';
+import Sources from '../../components/case/Sources.astro';
+import { campaigns, getNextCampaign } from '../../data/campaigns';
+import type { Campaign } from '../../data/types';
+
+export function getStaticPaths() {
+  return campaigns.map((campaign) => ({ params: { slug: campaign.slug }, props: { campaign } }));
+}
+
+interface Props {
+  campaign: Campaign;
+}
+
+const { campaign: c } = Astro.props;
+const next = getNextCampaign(c.slug);
+
+const meta = [
+  { label: 'Brief', value: c.briefProject },
+  { label: 'Sector', value: c.sector },
+  { label: 'Role', value: c.role },
+  { label: 'Made with', value: c.tools.join(', ') },
+];
+---
+
+<Base title={`${c.title} — ${c.brand}`} description={c.summary}>
+  <div class="progress" aria-hidden="true"><span data-case-progress></span></div>
+
+  <header class="ch">
+    <div class="wrap">
+      <div class="ch__top mono" data-reveal>
+        <a href="/#work" class="ch__back">← All work</a>
+        <span>{c.index} / 0{campaigns.length}</span>
+      </div>
+
+      <p class="mono ch__brand accent" data-reveal>{c.brand}</p>
+      <h1 class="ch__title" data-split>{c.title}</h1>
+      <p class="ch__tagline serif" data-reveal>{c.tagline}</p>
+
+      <dl class="ch__meta" data-reveal>
+        {
+          meta.map((m) => (
+            <div>
+              <dt class="mono muted">{m.label}</dt>
+              <dd>{m.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="wrap ch__cover" data-cover>
+      <PosterArt variant={c.variant} ratio="16/10" headline={c.idea.line} sub={c.title} image={c.cover} />
+    </div>
+  </header>
+
+  <CaseSection id="challenge" index="01" label="Challenge" title={c.summary}>
+    <p class="lede body-lede" data-reveal>{c.challenge}</p>
+  </CaseSection>
+
+  <CaseSection id="research" index="02" label="Research" title="What the evidence says.">
+    <Research research={c.research} />
+  </CaseSection>
+
+  <CaseSection id="insight" index="03" label="Insight" dark>
+    <blockquote class="insight" data-split>“{c.insight}”</blockquote>
+  </CaseSection>
+
+  <CaseSection id="diagnosis" index="04" label="Diagnosis" title="Finding the real barrier.">
+    <ComB comB={c.comB} />
+  </CaseSection>
+
+  <CaseSection id="brief" index="05" label="Creative brief" title="From psychology to brief." dark>
+    <BriefGrid brief={c.brief} />
+  </CaseSection>
+
+  <CaseSection id="idea" index="06" label="The idea">
+    <h2 class="idea__name" data-split>{c.idea.name}</h2>
+    <p class="idea__line serif accent" data-reveal>{c.idea.line}</p>
+    <div class="idea__body">
+      {c.idea.description.map((p) => <p data-reveal>{p}</p>)}
+    </div>
+  </CaseSection>
+
+  <CaseSection id="work" index="07" label="Executions" title="The work.">
+    <Executions items={c.executions} variant={c.variant} />
+  </CaseSection>
+
+  <CaseSection id="measure" index="08" label="Measurement" title="How we’ll know it worked.">
+    <div class="kpis">
+      {
+        c.kpis.map((k) => (
+          <div class="kpi" data-reveal>
+            <p class="kpi__metric">{k.metric}</p>
+            <p class="kpi__target accent">{k.target}</p>
+            <p class="kpi__method muted">{k.method}</p>
+          </div>
+        ))
+      }
+    </div>
+  </CaseSection>
+
+  <CaseSection id="reflection" index="09" label="Reflection" title="What I learned.">
+    <ol class="reflection">
+      {
+        c.reflection.map((r, i) => (
+          <li data-reveal>
+            <span class="mono accent">{String(i + 1).padStart(2, '0')}</span>
+            <p>{r}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </CaseSection>
+
+  <CaseSection id="sources" index="10" label="Sources">
+    <Sources references={c.references} aiLog={c.aiLog} />
+  </CaseSection>
+
+  <a href={`/work/${next.slug}`} class="next dark" data-cursor="Next">
+    <div class="wrap">
+      <p class="mono muted">Next project — {next.brand}</p>
+      <p class="next__title">{next.title} <span class="arrow">→</span></p>
+    </div>
+  </a>
+</Base>
+
+<style>
+  .progress {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 110;
+    height: 3px;
+  }
+
+  .progress span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .ch {
+    padding-top: 110px;
+  }
+
+  .ch__top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+  }
+
+  .ch__back:hover {
+    color: var(--accent);
+  }
+
+  .ch__brand {
+    margin-top: clamp(40px, 7vw, 96px);
+  }
+
+  .ch__title {
+    margin-top: 12px;
+    font-size: var(--step-5);
+    font-weight: 600;
+    line-height: 0.86;
+    letter-spacing: -0.055em;
+    max-width: 11ch;
+  }
+
+  .ch__tagline {
+    margin-top: 24px;
+    font-size: var(--step-2);
+    line-height: 1.1;
+    max-width: 24ch;
+  }
+
+  .ch__meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-block: clamp(40px, 6vw, 80px);
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  .ch__meta dd {
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .ch__cover {
+    padding-bottom: clamp(40px, 6vw, 80px);
+  }
+
+  .body-lede {
+    max-width: 48ch;
+    color: var(--muted);
+  }
+
+  .insight {
+    font-size: var(--step-3);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    max-width: 22ch;
+  }
+
+  .idea__name {
+    font-size: var(--step-4);
+    font-weight: 600;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+  }
+
+  .idea__line {
+    margin-top: 16px;
+    font-size: var(--step-2);
+  }
+
+  .idea__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 3vw, 48px);
+    margin-top: clamp(32px, 5vw, 64px);
+  }
+
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--line);
+  }
+
+  .kpi {
+    display: grid;
+    gap: 8px;
+    padding: 28px 24px 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .kpi__metric {
+    font-size: var(--step-1);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .kpi__target {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--step-1);
+  }
+
+  .reflection {
+    display: grid;
+    gap: 28px;
+  }
+
+  .reflection li {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    font-size: var(--step-1);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    max-width: 60ch;
+  }
+
+  .next {
+    display: block;
+    padding-block: clamp(80px, 12vw, 180px);
+  }
+
+  .next__title {
+    margin-top: 16px;
+    font-size: var(--step-4);
+    font-weight: 600;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+    transition: color 0.4s;
+  }
+
+  .next:hover .next__title {
+    color: var(--accent);
+  }
+
+  @media (max-width: 900px) {
+    .ch__meta,
+    .kpis,
+    .idea__body {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .ch__meta,
+    .kpis,
+    .idea__body {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

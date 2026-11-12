@@ -1,0 +1,164 @@
+---
+const steps = [
+  { name: 'Behaviour', q: 'What exactly should people do?', a: 'One specific, observable action. Not “awareness”.' },
+  { name: 'Audience', q: 'Who needs to change, and when?', a: 'The people with the biggest gap, at the moment it matters.' },
+  { name: 'Barrier', q: 'Why aren’t they doing it already?', a: 'A COM-B diagnosis: capability, opportunity or motivation.' },
+  { name: 'Trigger', q: 'Which mechanism could help?', a: 'Social norms, emotion, salience, loss, ease or prompts.' },
+  { name: 'Idea', q: 'How does it become engaging?', a: 'An idea people choose to watch, share and remember.' },
+  { name: 'Action', q: 'What is the one clear next step?', a: 'Simple, specific, and placed close to the moment of action.' },
+  { name: 'Measure', q: 'How will we know it worked?', a: 'Did people actually do the thing? Not just recall.' },
+];
+---
+
+<section class="method dark" data-method>
+  <div class="method__pin" data-method-pin>
+    <div class="wrap method__head">
+      <p class="mono eyebrow">How I work</p>
+      <h2 class="h2">From insight <span class="serif accent">to impact</span>, in seven steps.</h2>
+      <div class="method__progress" aria-hidden="true"><span data-method-progress></span></div>
+    </div>
+
+    <ol class="method__track" data-method-track>
+      {
+        steps.map((s, i) => (
+          <li class="step">
+            <span class="step__num">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="step__name">{s.name}</h3>
+            <p class="step__q serif">{s.q}</p>
+            <p class="step__a muted">{s.a}</p>
+          </li>
+        ))
+      }
+      <li class="step step--end">
+        <p class="h2">Insight → Idea → Action → <span class="serif accent">Measurable impact.</span></p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<style>
+  .method {
+    overflow: hidden;
+  }
+
+  .method__pin {
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(32px, 6vh, 72px);
+    padding-block: clamp(80px, 10vh, 120px);
+  }
+
+  .method__head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+  }
+
+  .method__head .eyebrow {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  .method__head h2 {
+    max-width: 16ch;
+  }
+
+  .method__progress {
+    width: clamp(120px, 18vw, 260px);
+    height: 2px;
+    background: var(--line);
+  }
+
+  .method__progress span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .method__track {
+    display: flex;
+    gap: clamp(16px, 2vw, 28px);
+    padding-inline: var(--gutter);
+    width: max-content;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: clamp(260px, 28vw, 420px);
+    min-height: clamp(320px, 46vh, 460px);
+    padding: clamp(22px, 2.4vw, 36px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--ink-2);
+    transition: border-color 0.4s, transform 0.6s var(--ease-out);
+  }
+
+  .step:hover {
+    border-color: var(--accent);
+    transform: translateY(-8px);
+  }
+
+  .step__num {
+    font-family: var(--font-mono);
+    color: var(--accent);
+  }
+
+  .step__name {
+    margin-top: auto;
+    font-size: var(--step-3);
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+
+  .step__q {
+    font-size: var(--step-1);
+    line-height: 1.2;
+  }
+
+  .step--end {
+    justify-content: flex-end;
+    width: clamp(300px, 40vw, 640px);
+    border: 0;
+    background: none;
+  }
+
+  .step--end:hover {
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .method__track {
+      flex-wrap: wrap;
+      width: auto;
+    }
+  }
+
+  @media (max-width: 899px) {
+    .method__track {
+      flex-direction: column;
+      width: auto;
+    }
+
+    .step,
+    .step--end {
+      width: auto;
+      min-height: 0;
+    }
+
+    .step__name {
+      margin-top: 24px;
+    }
+
+    .method__progress {
+      display: none;
+    }
+  }
+</style>

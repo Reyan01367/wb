@@ -1,0 +1,103 @@
+---
+import { site } from '../../data/site';
+
+const { youtubeId, vimeoId, file, poster, duration } = site.video;
+const embed = youtubeId
+  ? `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1`
+  : vimeoId
+    ? `https://player.vimeo.com/video/${vimeoId}?dnt=1`
+    : '';
+---
+
+<section class="film section" id="film">
+  <div class="wrap">
+    <div class="film__head">
+      <p class="mono eyebrow">Professional introduction — {duration}</p>
+      <h2 class="display" data-split>Why health needs <span class="serif accent">better advertising.</span></h2>
+    </div>
+
+    <div class="film__frame" data-film>
+      {embed && <iframe src={embed} title={`${site.name} — introduction`} allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen loading="lazy" />}
+      {!embed && file && <video src={file} poster={poster || undefined} controls playsinline preload="metadata" />}
+      {
+        !embed && !file && (
+          <div class="film__placeholder" data-cursor="Soon">
+            <span class="film__play" aria-hidden="true">▶</span>
+            <p class="mono">Intro film — {duration}</p>
+          </div>
+        )
+      }
+    </div>
+
+    <ul class="film__chapters mono" data-reveal>
+      <li><span class="accent">01</span> Who I am</li>
+      <li><span class="accent">02</span> My specialism</li>
+      <li><span class="accent">03</span> Why it matters</li>
+      <li><span class="accent">04</span> What I bring</li>
+      <li><span class="accent">05</span> Where I’m going</li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .film__head {
+    margin-bottom: clamp(40px, 6vw, 80px);
+  }
+
+  .film__head h2 {
+    max-width: 14ch;
+  }
+
+  .film__frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--ink);
+    will-change: clip-path;
+  }
+
+  .film__frame iframe,
+  .film__frame video {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+  }
+
+  .film__placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 20px;
+    color: var(--paper);
+    background:
+      radial-gradient(60% 80% at 70% 30%, rgb(255 75 31 / 0.35), transparent 70%),
+      radial-gradient(50% 70% at 20% 80%, rgb(65 182 230 / 0.25), transparent 70%),
+      var(--ink);
+  }
+
+  .film__play {
+    display: grid;
+    place-items: center;
+    width: clamp(72px, 9vw, 128px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--ink);
+    font-size: clamp(20px, 2.4vw, 36px);
+    padding-left: 0.2em;
+  }
+
+  .film__chapters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px 24px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+</style>

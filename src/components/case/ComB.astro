@@ -1,0 +1,109 @@
+---
+import type { Campaign } from '../../data/types';
+
+interface Props {
+  comB: Campaign['comB'];
+}
+
+const { comB } = Astro.props;
+
+const rows = [
+  { key: 'capability', letter: 'C', name: 'Capability', meaning: 'Knowledge, skills, physical or mental ability' },
+  { key: 'opportunity', letter: 'O', name: 'Opportunity', meaning: 'Physical environment and social norms' },
+  { key: 'motivation', letter: 'M', name: 'Motivation', meaning: 'Reflective beliefs and automatic emotions or habits' },
+] as const;
+---
+
+<div class="comb">
+  {
+    rows.map((row) => (
+      <article class:list={['comb__row', { 'is-primary': comB.primary === row.key }]} data-reveal>
+        <span class="comb__letter">{row.letter}</span>
+        <div>
+          <h3 class="comb__name">
+            {row.name}
+            {comB.primary === row.key && <span class="comb__tag mono">Primary barrier</span>}
+          </h3>
+          <p class="comb__meaning mono">{row.meaning}</p>
+        </div>
+        <p class="comb__text">{comB[row.key]}</p>
+      </article>
+    ))
+  }
+  <p class="comb__ref mono muted">Framework: COM-B (Michie, van Stralen and West, 2011)</p>
+</div>
+
+<style>
+  .comb {
+    display: grid;
+    gap: 12px;
+  }
+
+  .comb__row {
+    display: grid;
+    grid-template-columns: auto 1fr 1.4fr;
+    gap: clamp(16px, 3vw, 48px);
+    align-items: center;
+    padding: clamp(20px, 2.4vw, 32px);
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+  }
+
+  .comb__row.is-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+
+  .comb__letter {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--step-4);
+    line-height: 0.8;
+    width: 1ch;
+  }
+
+  .comb__name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-size: var(--step-1);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .comb__tag {
+    padding: 0.3em 0.7em;
+    border-radius: 99px;
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 11px;
+  }
+
+  .comb__meaning {
+    margin-top: 6px;
+    text-transform: none;
+    opacity: 0.65;
+  }
+
+  .comb__text {
+    font-size: var(--step-0);
+    line-height: 1.45;
+  }
+
+  .comb__ref {
+    margin-top: 8px;
+    text-transform: none;
+  }
+
+  @media (max-width: 800px) {
+    .comb__row {
+      grid-template-columns: auto 1fr;
+    }
+
+    .comb__text {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

@@ -1,0 +1,73 @@
+---
+import Pulse from './Pulse.astro';
+import { site } from '../data/site';
+---
+
+<div class="preloader" data-preloader aria-hidden="true">
+  <div class="preloader__top mono">
+    <span>{site.name}</span>
+    <span>{site.role}</span>
+  </div>
+
+  <div class="preloader__ecg">
+    <Pulse mode="draw" />
+  </div>
+
+  <div class="preloader__bottom">
+    <span class="mono">Checking vitals</span>
+    <span class="preloader__count"><span data-preloader-count>0</span><sup>%</sup></span>
+  </div>
+</div>
+
+<style>
+  .preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: var(--gutter);
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  :global(.no-preload) .preloader {
+    display: none;
+  }
+
+  .preloader__top {
+    display: flex;
+    justify-content: space-between;
+    color: #9b968b;
+  }
+
+  .preloader__ecg {
+    align-self: center;
+    color: var(--accent);
+  }
+
+  .preloader__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .preloader__count {
+    font-size: var(--step-5);
+    font-weight: 600;
+    line-height: 0.8;
+    letter-spacing: -0.06em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  sup {
+    font-size: 0.3em;
+    vertical-align: top;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .preloader {
+      display: none;
+    }
+  }
+</style>

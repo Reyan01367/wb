@@ -1,0 +1,51 @@
+---
+/**
+ * ECG line — the site's signature motif.
+ * `mode="loop"` runs a travelling pulse; `mode="draw"` draws on scroll (see scripts/reveal.ts).
+ */
+interface Props {
+  mode?: 'loop' | 'draw' | 'static';
+  class?: string;
+}
+
+const { mode = 'static', class: className = '' } = Astro.props;
+
+const beat = 'h70 l10 -4 l8 4 h14 l8 -40 l12 78 l10 -52 l8 14 h24 l14 -12 l14 12';
+const path = `M0 60 ${Array.from({ length: 4 }, () => beat).join(' ')} h70`;
+---
+
+<svg
+  class:list={['pulse', `pulse--${mode}`, className]}
+  viewBox="0 0 1000 120"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  data-draw={mode === 'draw' ? '' : undefined}
+>
+  <path d={path} pathLength="1" vector-effect="non-scaling-stroke"></path>
+</svg>
+
+<style>
+  .pulse {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+
+  .pulse--loop path {
+    stroke-dasharray: 0.22 0.78;
+    animation: travel 2.6s linear infinite;
+  }
+
+  @keyframes travel {
+    from { stroke-dashoffset: 1; }
+    to { stroke-dashoffset: 0; }
+  }
+</style>

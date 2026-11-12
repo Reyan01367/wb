@@ -1,0 +1,438 @@
+---
+/**
+ * Campaign key visual. Renders a supplied image when `image` is set,
+ * otherwise a typographic layout in the campaign's art direction.
+ * Typography scales with the frame via container query units.
+ */
+import type { PosterVariant, Ratio } from '../data/types';
+
+interface Props {
+  variant: PosterVariant;
+  ratio?: Ratio;
+  headline: string;
+  sub?: string;
+  image?: string;
+  alt?: string;
+  class?: string;
+}
+
+const { variant, ratio = '4/5', headline, sub, image, alt = headline, class: className = '' } = Astro.props;
+---
+
+<figure class:list={['poster', `poster--${variant}`, className]} style={`--ratio: ${ratio}`}>
+  {
+    image ? (
+      <img src={image} alt={alt} loading="lazy" decoding="async" />
+    ) : (
+      <div class="poster__art" role="img" aria-label={`${headline} ${sub ?? ''}`}>
+        {variant === 'bupa' && (
+          <>
+            <div class="bupa__hazard" />
+            <div class="bupa__body">
+              <div class="bupa__meta">
+                <span>MOT test certificate</span>
+                <span>Vehicle: you</span>
+              </div>
+              <p class="bupa__head">{headline}</p>
+              <span class="bupa__stamp">Service<br />overdue</span>
+              <ul class="bupa__checks">
+                <li><span>Heart</span><i /><b>Not tested</b></li>
+                <li><span>Blood pressure</span><i /><b>Advisory</b></li>
+                <li><span>Cholesterol</span><i /><b>Not tested</b></li>
+              </ul>
+              <div class="bupa__foot">
+                <span class="bupa__brand">Bupa</span>
+                {sub && <span>{sub}</span>}
+              </div>
+            </div>
+          </>
+        )}
+
+        {variant === 'nhs' && (
+          <>
+            <span class="nhs__no2">No.2</span>
+            <div class="nhs__roll" />
+            <div class="nhs__body">
+              <span class="nhs__meta">Bowel cancer screening</span>
+              <p class="nhs__head">{headline}</p>
+              {sub && <p class="nhs__sub">{sub}</p>}
+            </div>
+          </>
+        )}
+
+        {variant === 'nivea' && (
+          <>
+            <div class="nivea__sky">
+              <span /><span /><span />
+            </div>
+            <div class="nivea__card">
+              <div class="nivea__row">
+                <span>Today</span>
+                <span>☁︎ Cloudy</span>
+              </div>
+              <span class="nivea__temp">14°</span>
+              <div class="nivea__uv">
+                <span>UV 5</span>
+                <i><em /></i>
+              </div>
+            </div>
+            <div class="nivea__body">
+              <p class="nivea__head">{headline}</p>
+              <div class="nivea__foot">
+                {sub && <span>{sub}</span>}
+                <span class="nivea__brand">NIVEA SUN</span>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    )
+  }
+</figure>
+
+<style>
+  .poster {
+    position: relative;
+    aspect-ratio: var(--ratio);
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius);
+    container-type: size;
+  }
+
+  .poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .poster__art {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---------------- Bupa — garage / MOT ---------------- */
+  .poster--bupa {
+    background: #ffd21f;
+    color: #111;
+  }
+
+  .bupa__hazard {
+    flex: 0 0 auto;
+    height: 6cqmin;
+    background: repeating-linear-gradient(-45deg, #111 0 3cqmin, #ffd21f 3cqmin 6cqmin);
+  }
+
+  .bupa__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4cqmin;
+    padding: 6cqmin;
+  }
+
+  .bupa__meta,
+  .bupa__checks,
+  .bupa__foot {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-size: clamp(7px, 3.4cqmin, 15px);
+  }
+
+  .bupa__meta {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #111;
+    padding-bottom: 2cqmin;
+  }
+
+  .bupa__head {
+    font-size: 11cqmin;
+    font-weight: 700;
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+    max-width: 14ch;
+  }
+
+  .bupa__stamp {
+    position: absolute;
+    right: 9cqmin;
+    top: 46%;
+    padding: 2cqmin 4cqmin;
+    border: 1.2cqmin solid #d7261e;
+    border-radius: 2cqmin;
+    color: #d7261e;
+    font-family: var(--font-mono);
+    font-size: 6cqmin;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+    transform: rotate(-12deg);
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+  }
+
+  .bupa__checks {
+    margin-top: auto;
+    display: grid;
+    gap: 1.5cqmin;
+  }
+
+  .bupa__checks li {
+    display: flex;
+    align-items: baseline;
+    gap: 2cqmin;
+  }
+
+  .bupa__checks i {
+    flex: 1;
+    border-bottom: 2px dotted #111;
+  }
+
+  .bupa__checks b {
+    padding: 0.2em 0.5em;
+    background: #111;
+    color: #ffd21f;
+    font-weight: 400;
+  }
+
+  .bupa__foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2cqmin;
+    border-top: 2px solid #111;
+    padding-top: 2cqmin;
+  }
+
+  .bupa__brand {
+    font-family: var(--font-sans);
+    font-size: 6cqmin;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: -0.04em;
+  }
+
+  @container (aspect-ratio > 2) {
+    .bupa__body {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      grid-template-rows: auto 1fr auto;
+      column-gap: 6cqmin;
+    }
+
+    .bupa__meta,
+    .bupa__foot {
+      grid-column: 1 / -1;
+    }
+
+    .bupa__head {
+      font-size: 18cqmin;
+      align-self: center;
+    }
+
+    .bupa__checks {
+      align-self: center;
+      margin: 0;
+    }
+
+    .bupa__stamp {
+      display: none;
+    }
+  }
+
+  /* ---------------- NHS — Number Two Priority ---------------- */
+  .poster--nhs {
+    background: #005eb8;
+    color: #fff;
+  }
+
+  .nhs__no2 {
+    position: absolute;
+    top: -4cqmin;
+    left: 4cqmin;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 58cqmin;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: #41b6e6;
+    mix-blend-mode: screen;
+    opacity: 0.85;
+  }
+
+  .nhs__roll {
+    position: absolute;
+    right: -10cqmin;
+    top: 22cqmin;
+    width: 44cqmin;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, #005eb8 0 18%, #c9b9a6 18% 26%, #fffaf2 26% 100%);
+    box-shadow: 0 2cqmin 6cqmin rgb(0 0 0 / 0.25);
+  }
+
+  .nhs__body {
+    position: relative;
+    margin-top: auto;
+    padding: 6cqmin;
+  }
+
+  .nhs__meta {
+    display: inline-block;
+    margin-bottom: 3cqmin;
+    padding: 0.35em 0.7em;
+    background: #fff;
+    color: #005eb8;
+    font-family: var(--font-mono);
+    font-size: clamp(7px, 3.2cqmin, 14px);
+    text-transform: uppercase;
+  }
+
+  .nhs__head {
+    font-size: 10.5cqmin;
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    max-width: 13ch;
+  }
+
+  .nhs__sub {
+    margin-top: 3cqmin;
+    font-size: 4.4cqmin;
+    max-width: 30ch;
+  }
+
+  @container (aspect-ratio > 2) {
+    .nhs__no2 { font-size: 90cqmin; }
+    .nhs__roll { right: 6cqmin; top: 20cqmin; width: 60cqmin; }
+    .nhs__head { font-size: 16cqmin; }
+  }
+
+  /* ---------------- NIVEA SUN — grey sky UV ---------------- */
+  .poster--nivea {
+    background: linear-gradient(180deg, #8c96a3 0%, #b9c0c8 55%, #e3dccf 100%);
+    color: #0b1f5c;
+  }
+
+  .nivea__sky {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .nivea__sky span {
+    position: absolute;
+    border-radius: 50%;
+    background: #eef0f2;
+    filter: blur(6cqmin);
+    opacity: 0.8;
+    animation: drift 18s ease-in-out infinite alternate;
+  }
+
+  .nivea__sky span:nth-child(1) { width: 80cqmin; height: 30cqmin; top: 6%; left: -20%; }
+  .nivea__sky span:nth-child(2) { width: 70cqmin; height: 26cqmin; top: 28%; right: -25%; animation-delay: -6s; }
+  .nivea__sky span:nth-child(3) { width: 50cqmin; height: 50cqmin; bottom: 18%; left: 30%; background: #ffb36b; opacity: 0.35; filter: blur(10cqmin); }
+
+  @keyframes drift {
+    to { transform: translateX(12cqmin); }
+  }
+
+  .nivea__card {
+    position: relative;
+    margin: 6cqmin 6cqmin 0 auto;
+    width: min(46cqmin, 70%);
+    padding: 4cqmin;
+    border-radius: 4cqmin;
+    background: rgb(255 255 255 / 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgb(255 255 255 / 0.6);
+    font-family: var(--font-mono);
+    font-size: clamp(7px, 3cqmin, 13px);
+    text-transform: uppercase;
+  }
+
+  .nivea__row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nivea__temp {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 16cqmin;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    margin-block: 1cqmin;
+  }
+
+  .nivea__uv {
+    display: flex;
+    align-items: center;
+    gap: 2cqmin;
+  }
+
+  .nivea__uv i {
+    flex: 1;
+    height: 1.4cqmin;
+    border-radius: 9px;
+    background: linear-gradient(90deg, #6ccf6a, #f6d743, #ff8a34, #e5383b, #8e44ad);
+    position: relative;
+  }
+
+  .nivea__uv em {
+    position: absolute;
+    left: 45%;
+    top: 50%;
+    width: 3cqmin;
+    height: 3cqmin;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #0b1f5c;
+    transform: translate(-50%, -50%);
+  }
+
+  .nivea__body {
+    position: relative;
+    margin-top: auto;
+    padding: 6cqmin;
+  }
+
+  .nivea__head {
+    font-size: 10.5cqmin;
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    max-width: 12ch;
+  }
+
+  .nivea__foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2cqmin;
+    margin-top: 4cqmin;
+    font-size: 4cqmin;
+  }
+
+  .nivea__brand {
+    padding: 0.4em 0.9em;
+    border-radius: 99px;
+    background: #0b1f5c;
+    color: #fff;
+    font-weight: 700;
+    font-size: clamp(8px, 3.4cqmin, 15px);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  @container (aspect-ratio > 2) {
+    .nivea__card { position: absolute; right: 0; top: 0; width: 34cqmin; }
+    .nivea__head { font-size: 17cqmin; max-width: 16ch; }
+    .nivea__foot { justify-content: flex-start; gap: 4cqmin; }
+  }
+</style>

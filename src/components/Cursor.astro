@@ -1,0 +1,62 @@
+<div class="cursor" data-cursor-el aria-hidden="true">
+  <span class="cursor__label" data-cursor-label></span>
+</div>
+
+<style>
+  .cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 180;
+    display: none;
+    place-items: center;
+    width: 12px;
+    height: 12px;
+    margin: -6px 0 0 -6px;
+    border-radius: 50%;
+    background: var(--accent);
+    pointer-events: none;
+    transition:
+      width 0.45s var(--ease-out),
+      height 0.45s var(--ease-out),
+      margin 0.45s var(--ease-out),
+      opacity 0.3s;
+  }
+
+  @media (pointer: fine) {
+    .cursor {
+      display: grid;
+    }
+  }
+
+  .cursor.is-label {
+    width: 96px;
+    height: 96px;
+    margin: -48px 0 0 -48px;
+  }
+
+  .cursor.is-hover:not(.is-label) {
+    width: 44px;
+    height: 44px;
+    margin: -22px 0 0 -22px;
+    opacity: 0.35;
+  }
+
+  .cursor.is-hidden {
+    opacity: 0;
+  }
+
+  .cursor__label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .cursor.is-label .cursor__label {
+    opacity: 1;
+  }
+</style>
