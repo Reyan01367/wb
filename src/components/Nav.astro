@@ -38,9 +38,20 @@ const links = [
     justify-content: space-between;
     align-items: center;
     padding: 20px var(--gutter);
-    color: #fff;
-    mix-blend-mode: difference;
-    transition: transform 0.6s var(--ease-out);
+    color: var(--ink);
+    border-bottom: 1px solid transparent;
+    transition:
+      transform 0.6s var(--ease-out),
+      padding 0.4s var(--ease-out),
+      background-color 0.4s,
+      border-color 0.4s;
+  }
+
+  .nav.is-scrolled {
+    padding-block: 14px;
+    background: rgb(247 250 252 / 0.82);
+    backdrop-filter: blur(14px);
+    border-bottom-color: var(--line);
   }
 
   .nav.is-hidden {
@@ -59,7 +70,7 @@ const links = [
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: currentColor;
+    background: var(--accent);
     animation: beat 1.6s var(--ease-out) infinite;
   }
 

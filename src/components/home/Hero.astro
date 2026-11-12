@@ -13,7 +13,7 @@ const facts = [
   <div class="wrap hero__inner">
     <p class="mono hero__kicker" data-reveal>
       <span>{site.hero.kicker}</span>
-      <span>{site.role}</span>
+      <span>{site.hero.tag}</span>
     </p>
 
     <h1 class="hero__title" aria-label={site.hero.lines.join(' ')}>
@@ -40,6 +40,11 @@ const facts = [
 
     <div class="hero__foot">
       <p class="lede" data-reveal>{site.hero.intro}</p>
+
+      <div class="hero__cta" data-reveal>
+        <a href="#work" class="btn btn--primary" data-magnetic>View work <span class="arrow">→</span></a>
+        <a href="#contact" class="btn btn--ghost" data-magnetic>Contact</a>
+      </div>
 
       <dl class="hero__facts" data-reveal>
         {
@@ -175,6 +180,11 @@ const facts = [
     align-items: flex-end;
     gap: 40px;
     padding-bottom: clamp(32px, 6vh, 64px);
+  }
+
+  .hero__cta {
+    display: flex;
+    gap: 12px;
   }
 
   .hero__facts {

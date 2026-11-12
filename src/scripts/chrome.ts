@@ -13,6 +13,7 @@ export function initNav() {
     () => {
       const y = window.scrollY;
       nav.classList.toggle('is-hidden', y > lastY && y > 200);
+      nav.classList.toggle('is-scrolled', y > 40);
       lastY = y;
     },
     { passive: true },

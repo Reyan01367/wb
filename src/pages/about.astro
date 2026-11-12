@@ -33,7 +33,7 @@ import { site } from '../data/site';
               </a>
             ))
           }
-          <a href={site.socials[0].href} class="btn btn--accent" target="_blank" rel="noopener" data-magnetic>
+          <a href={site.socials[0].href} class="btn btn--primary" target="_blank" rel="noopener" data-magnetic>
             LinkedIn <span class="arrow">↗</span>
           </a>
         </div>
@@ -121,7 +121,8 @@ import { site } from '../data/site';
     display: grid;
     place-items: center;
     background:
-      radial-gradient(70% 60% at 30% 20%, rgb(255 75 31 / 0.9), transparent 70%),
+      radial-gradient(70% 60% at 30% 20%, rgb(20 163 160 / 0.85), transparent 70%),
+      radial-gradient(60% 60% at 80% 90%, rgb(31 111 178 / 0.8), transparent 70%),
       var(--ink);
     color: var(--paper);
   }

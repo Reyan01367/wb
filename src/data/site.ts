@@ -2,9 +2,9 @@
  * Everything personal lives here. Replace every value marked TODO before submitting.
  */
 export const site = {
-  name: 'Your Name', // TODO
-  firstName: 'Your', // TODO — used in the giant footer wordmark
-  initials: 'YN', // TODO
+  name: 'Adam Joumma',
+  firstName: 'Adam', // used in the giant footer wordmark
+  initials: 'AJ',
   role: 'Health Communications Strategist',
   location: 'London, UK',
   email: 'hello@yourname.com', // TODO
@@ -43,6 +43,7 @@ export const site = {
 
   hero: {
     kicker: 'Portfolio — 2026',
+    tag: 'Health comms strategist',
     lines: ['Healthier', 'behaviour,', 'by design.'],
     intro:
       'I’m a creative strategist who uses behavioural science to close the gap between knowing what’s healthy and actually doing it.',

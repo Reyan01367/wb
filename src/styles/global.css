@@ -2,14 +2,17 @@
    Tokens
    ------------------------------------------------------------------ */
 :root {
-  --paper: #efebe3;
-  --paper-2: #e6e1d6;
-  --ink: #0e0e0c;
-  --ink-2: #1a1a17;
-  --muted: #6f6b62;
-  --line: rgb(14 14 12 / 0.14);
-  --accent: #ff4b1f;
-  --accent-ink: #0e0e0c;
+  /* Hospital palette */
+  --paper: #f7fafc; /* clinical white — background */
+  --paper-2: #eaf1f5; /* soft grey-blue — cards / sections */
+  --ink: #0f2a3d; /* deep navy — main text, dark sections */
+  --ink-2: #163a52; /* raised navy — cards on dark */
+  --muted: #4a6072; /* slate grey — secondary text */
+  --line: #d3dee6; /* light line — borders */
+  --primary: #1f6fb2; /* medical blue — buttons, links, highlights */
+  --on-primary: #ffffff;
+  --accent: #14a3a0; /* healthcare teal — motifs, markers */
+  --mint: #d6f2ee; /* calm mint — soft accent */
 
   --font-sans: 'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
@@ -82,12 +85,12 @@ ol {
 }
 
 ::selection {
-  background: var(--accent);
+  background: var(--mint);
   color: var(--ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--primary);
   outline-offset: 4px;
   border-radius: 4px;
 }
@@ -109,8 +112,9 @@ ol {
 .dark {
   background: var(--ink);
   color: var(--paper);
-  --line: rgb(239 235 227 / 0.16);
-  --muted: #9b968b;
+  --line: rgb(247 250 252 / 0.14);
+  --muted: #9fb3c2;
+  --primary: var(--accent);
 }
 
 .mono {
@@ -153,7 +157,7 @@ ol {
 }
 
 .accent {
-  color: var(--accent);
+  color: var(--primary);
 }
 
 .eyebrow {
@@ -226,10 +230,14 @@ ol {
   transform: translateY(0);
 }
 
-.btn--accent {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--accent-ink);
+.btn--primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--on-primary);
+}
+
+.btn--ghost {
+  color: var(--primary);
 }
 
 .arrow {
@@ -250,7 +258,7 @@ button:hover .arrow {
   inset: -50%;
   z-index: 90;
   pointer-events: none;
-  opacity: 0.07;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain 1s steps(6) infinite;
 }

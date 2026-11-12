@@ -76,7 +76,8 @@ import { campaigns } from '../../data/campaigns';
     background: var(--ink);
     color: var(--paper);
     min-height: 82vh;
-    --line: rgb(239 235 227 / 0.16);
+    --line: rgb(247 250 252 / 0.14);
+    --muted: #9fb3c2;
   }
 
   .card__info {
@@ -90,7 +91,7 @@ import { campaigns } from '../../data/campaigns';
     display: flex;
     justify-content: space-between;
     gap: 16px;
-    color: #9b968b;
+    color: var(--muted);
     border-bottom: 1px solid var(--line);
     padding-bottom: 14px;
   }
@@ -109,7 +110,7 @@ import { campaigns } from '../../data/campaigns';
 
   .card__summary {
     max-width: 44ch;
-    color: #c9c4b9;
+    color: var(--muted);
   }
 
   .card__btn {

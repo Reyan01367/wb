@@ -35,8 +35,7 @@ function workStack(mm: gsap.MatchMedia) {
   mm.add(DESKTOP, () => {
     cards.slice(0, -1).forEach((card, i) => {
       gsap.to(card, {
-        scale: 0.9,
-        opacity: 0.4,
+        scale: 0.92,
         ease: 'none',
         scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top 9%', scrub: true },
       });
