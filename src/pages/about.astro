@@ -74,22 +74,24 @@ import { site } from '../data/site';
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap">
-      <p class="mono eyebrow">Awards & recognition</p>
-      <ul class="rows rows--awards">
-        {
-          site.awards.map((a) => (
-            <li data-reveal>
-              <span class="mono muted">{a.year}</span>
-              <span class="rows__big">{a.title}</span>
-              <span class="muted">{a.org}</span>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
+  {site.awards.length > 0 && (
+    <section class="section">
+      <div class="wrap">
+        <p class="mono eyebrow">Awards & recognition</p>
+        <ul class="rows rows--awards">
+          {
+            site.awards.map((a) => (
+              <li data-reveal>
+                <span class="mono muted">{a.year}</span>
+                <span class="rows__big">{a.title}</span>
+                <span class="muted">{a.org}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+  )}
 </Base>
 
 <style>

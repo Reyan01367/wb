@@ -1,0 +1,158 @@
+---
+/** The Humble Co. key visual: one tooth, 60% brushed and 40% missed. */
+import { percentParts, uid } from './text';
+
+interface Props {
+  headline: string;
+  sub?: string;
+}
+
+const { headline, sub } = Astro.props;
+const hatch = uid('hatch');
+const shape = uid('tooth');
+const outline =
+  'M40 30C60 10 85 18 100 28C115 18 140 10 160 30C185 55 182 100 170 130C162 150 160 175 156 200C153 214 138 216 134 200L124 158C120 145 110 140 100 140C90 140 80 145 76 158L66 200C62 216 47 214 44 200C40 175 38 150 30 130C18 100 15 55 40 30Z';
+---
+
+<div class="tooth">
+  <div class="tooth__copy">
+    <p class="tooth__head">
+      {percentParts(headline).map(({ part, isPercent }) => (isPercent ? <em>{part}</em> : part))}
+    </p>
+    {sub && <p class="tooth__sub">{sub}</p>}
+  </div>
+
+  <svg class="tooth__art" viewBox="0 0 200 250" aria-hidden="true">
+    <defs>
+      <pattern id={hatch} width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <rect width="9" height="9" fill="#ff5d3a" />
+        <rect width="3.5" height="9" fill="#ffb59f" />
+      </pattern>
+      <clipPath id={shape}><path d={outline} /></clipPath>
+    </defs>
+    <g clip-path={`url(#${shape})`}>
+      <rect width="117" height="230" fill="#fff" />
+      <rect x="117" width="90" height="230" fill={`url(#${hatch})`} />
+    </g>
+    <path d={outline} fill="none" stroke="#10302e" stroke-width="4" stroke-linejoin="round" />
+    <path d="M117 6V226" stroke="#10302e" stroke-width="2" stroke-dasharray="5 5" />
+    <path class="tooth__shine" d="M56 44c8-8 18-10 26-6M50 64c0-6 2-10 5-14" />
+    <text x="66" y="246" text-anchor="middle">60% brushed</text>
+    <text x="156" y="246" text-anchor="middle" class="missed">40% missed</text>
+  </svg>
+
+  <p class="tooth__mark">the humble co.</p>
+</div>
+
+<style>
+  .tooth {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background: #dff1ec;
+    color: #10302e;
+  }
+
+  .tooth__copy {
+    display: grid;
+    gap: 3cqmin;
+    padding: 7cqmin 7cqmin 0;
+  }
+
+  .tooth__head {
+    font-size: 12cqmin;
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+  }
+
+  .tooth__head em {
+    font-style: normal;
+    color: #ff5d3a;
+  }
+
+  .tooth__sub {
+    font-size: 4cqmin;
+    font-weight: 500;
+  }
+
+  .tooth__art {
+    justify-self: center;
+    align-self: end;
+    width: 80%;
+    height: 92%;
+    margin-bottom: 4cqmin;
+  }
+
+  .tooth__art text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    fill: #10302e;
+  }
+
+  .tooth__art .missed {
+    fill: #e2401e;
+  }
+
+  .tooth__shine {
+    fill: none;
+    stroke: #bfe6dc;
+    stroke-width: 5;
+    stroke-linecap: round;
+  }
+
+  .tooth__mark {
+    position: absolute;
+    left: 7cqmin;
+    bottom: 6cqmin;
+    font-size: 4.4cqmin;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  @container (aspect-ratio > 1.3) {
+    .tooth {
+      grid-template-rows: none;
+      grid-template-columns: 1.3fr 1fr;
+      align-items: center;
+    }
+
+    .tooth__copy {
+      padding: 0 0 0 7cqmin;
+    }
+
+    .tooth__head {
+      font-size: 17cqmin;
+    }
+
+    .tooth__sub {
+      font-size: 5cqmin;
+    }
+
+    .tooth__art {
+      width: 100%;
+      height: 84%;
+      margin: 0;
+      align-self: center;
+    }
+
+    .tooth__mark {
+      font-size: 5.4cqmin;
+    }
+  }
+
+  @container (aspect-ratio > 2.4) {
+    .tooth__head {
+      font-size: 22cqmin;
+    }
+
+    .tooth__mark {
+      left: auto;
+      right: 4cqmin;
+      bottom: auto;
+      top: 6cqmin;
+    }
+  }
+</style>

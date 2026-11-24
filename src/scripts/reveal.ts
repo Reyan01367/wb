@@ -64,12 +64,14 @@ function drawLines() {
 /** Counts up stats like "67.6%", "7m+", "17.5k" while keeping their suffix. */
 function counters() {
   $$('[data-count]').forEach((el) => {
-    const match = el.dataset.count?.match(/^([\d.]+)(.*)$/);
+    // Optional prefix (£, $, Dh), a number that may use thousands separators, then any suffix.
+    const match = el.dataset.count?.match(/^(\D*?)(\d[\d,]*(?:\.\d+)?)(.*)$/);
     if (!match) return;
 
-    const [, num, suffix] = match;
-    const target = parseFloat(num);
+    const [, prefix, num, suffix] = match;
+    const target = parseFloat(num.replaceAll(',', ''));
     const decimals = num.split('.')[1]?.length ?? 0;
+    const grouped = num.includes(',');
     const state = { value: 0 };
 
     gsap.to(state, {
@@ -78,7 +80,10 @@ function counters() {
       ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 90%', once: true },
       onUpdate: () => {
-        el.textContent = `${state.value.toFixed(decimals)}${suffix}`;
+        const value = grouped
+          ? state.value.toLocaleString('en-GB', { maximumFractionDigits: decimals })
+          : state.value.toFixed(decimals);
+        el.textContent = `${prefix}${value}${suffix}`;
       },
     });
   });

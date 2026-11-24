@@ -1,0 +1,178 @@
+---
+/** OLIVARA Provenance Pack: an olive-wood box holding a tree passport and grove oil. */
+interface Props {
+  headline: string;
+  sub?: string;
+}
+
+const { headline, sub = 'Tree passport' } = Astro.props;
+
+const record = [
+  ['Species', 'Olea europaea'],
+  ['Age', 'c. 500 years'],
+  ['Grove', 'Andalusia, Spain'],
+  ['Origin', '37.77° N, 3.79° W'],
+  ['Installed', 'Dubai, 2028'],
+];
+---
+
+<div class="passport">
+  <p class="passport__head">{headline}</p>
+
+  <div class="passport__box" aria-hidden="true">
+    <div class="passport__doc">
+      <div class="passport__top">
+        <span>{sub}</span>
+        <span>No. 0417</span>
+      </div>
+      <dl>
+        {
+          record.map(([term, value]) => (
+            <div>
+              <dt>{term}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <span class="passport__stamp">Verified<br />OLIVARA</span>
+    </div>
+  </div>
+
+  <svg class="passport__oil" viewBox="0 0 80 220" aria-hidden="true">
+    <rect x="30" y="0" width="20" height="26" rx="3" fill="#2a2a22" />
+    <path d="M32 26h16v24c0 10 22 18 22 40v118a12 12 0 0 1-12 12H22a12 12 0 0 1-12-12V90c0-22 22-30 22-40z" fill="#47592b" />
+    <path d="M18 92c0-12 8-20 14-26" stroke="#8fa45e" stroke-width="3" fill="none" opacity="0.6" />
+    <rect x="14" y="120" width="52" height="64" rx="3" fill="#f3ead6" />
+    <text x="40" y="146" text-anchor="middle">OLIVARA</text>
+    <text x="40" y="166" text-anchor="middle" class="small">Grove 0417</text>
+  </svg>
+
+  <p class="passport__mark">OLIVARA · Provenance Pack</p>
+</div>
+
+<style>
+  .passport {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, #f2ebdd, #ddd1bb);
+    color: #2c3320;
+  }
+
+  .passport__head {
+    position: relative;
+    z-index: 1;
+    max-width: 17ch;
+    padding: 7cqmin 7cqmin 0;
+    font-family: var(--font-serif);
+    font-size: 7.6cqmin;
+    line-height: 1;
+    letter-spacing: -0.015em;
+  }
+
+  .passport__box {
+    position: absolute;
+    left: 6cqmin;
+    bottom: -5cqmin;
+    width: 66cqmin;
+    height: 54cqmin;
+    padding: 4.5cqmin;
+    border-radius: 2cqmin;
+    transform: rotate(-4deg);
+    background:
+      repeating-radial-gradient(ellipse at 20% 130%, transparent 0 1.6cqmin, rgb(70 44 20 / 0.18) 1.6cqmin 1.9cqmin),
+      linear-gradient(135deg, #b48b5e, #8f6a43);
+    box-shadow:
+      inset 0 0 0 1.6cqmin rgb(255 230 190 / 0.14),
+      inset 0 1cqmin 2.4cqmin rgb(40 24 8 / 0.55),
+      0 3cqmin 6cqmin rgb(60 40 20 / 0.35);
+  }
+
+  .passport__doc {
+    position: relative;
+    height: 100%;
+    padding: 4cqmin;
+    border-radius: 0.8cqmin;
+    background: #fbf6ea;
+    box-shadow: 0 1cqmin 2cqmin rgb(40 24 8 / 0.3);
+    font-family: var(--font-mono);
+    font-size: clamp(6px, 2.3cqmin, 12px);
+  }
+
+  .passport__top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2cqmin;
+    border-bottom: 0.4cqmin solid #2c3320;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .passport__doc dl {
+    display: grid;
+    gap: 1.6cqmin;
+    margin-top: 3cqmin;
+  }
+
+  .passport__doc dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 2cqmin;
+    border-bottom: 0.25cqmin dotted #8b8a76;
+  }
+
+  .passport__doc dt {
+    text-transform: uppercase;
+    color: #6b6a58;
+  }
+
+  .passport__stamp {
+    position: absolute;
+    right: -3cqmin;
+    top: -4cqmin;
+    padding: 1.2cqmin 2cqmin;
+    background: rgb(251 246 234 / 0.9);
+    border: 0.6cqmin solid #6b7a3f;
+    border-radius: 50%;
+    color: #6b7a3f;
+    font-weight: 700;
+    line-height: 1.1;
+    text-align: center;
+    text-transform: uppercase;
+    transform: rotate(-14deg);
+    opacity: 0.85;
+  }
+
+  .passport__oil {
+    position: absolute;
+    right: 9cqmin;
+    bottom: 7cqmin;
+    height: 52cqmin;
+    filter: drop-shadow(0 2cqmin 2.4cqmin rgb(40 30 10 / 0.35));
+  }
+
+  .passport__oil text {
+    font-family: var(--font-serif);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    fill: #2c3320;
+  }
+
+  .passport__oil .small {
+    font-family: var(--font-mono);
+    font-size: 7px;
+    letter-spacing: 0.05em;
+  }
+
+  .passport__mark {
+    position: absolute;
+    right: 7cqmin;
+    top: 7cqmin;
+    font-family: var(--font-mono);
+    font-size: clamp(6px, 2.2cqmin, 11px);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+  }
+</style>

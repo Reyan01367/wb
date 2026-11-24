@@ -1,0 +1,57 @@
+---
+/** An Altruist SPF50 bottle, drawn as a product shot. */
+import { uid } from './text';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const shade = uid('shade');
+---
+
+<svg class:list={['bottle', className]} viewBox="0 0 120 300" aria-hidden="true">
+  <defs>
+    <linearGradient id={shade} x1="0" x2="1">
+      <stop offset="0" stop-color="#dfe3ea" />
+      <stop offset="0.35" stop-color="#ffffff" />
+      <stop offset="0.8" stop-color="#f2f4f7" />
+      <stop offset="1" stop-color="#c9cfd8" />
+    </linearGradient>
+  </defs>
+  <rect x="34" y="0" width="52" height="54" rx="8" fill="#1f2a44" />
+  <rect x="38" y="6" width="6" height="42" rx="3" fill="#3a4766" />
+  <path d="M30 54h60l18 26v198a22 22 0 0 1-22 22H34a22 22 0 0 1-22-22V80z" fill={`url(#${shade})`} />
+  <text x="60" y="118" class="brand">ALTRUIST</text>
+  <text x="60" y="170" class="spf">SPF50</text>
+  <text x="60" y="196" class="small">Dermatologist</text>
+  <text x="60" y="209" class="small">developed</text>
+  <text x="60" y="242" class="small">UVA ★★★★★</text>
+  <text x="60" y="282" class="small">100 ml</text>
+</svg>
+
+<style>
+  .bottle text {
+    text-anchor: middle;
+    fill: #1f2a44;
+    font-family: var(--font-sans);
+  }
+
+  .brand {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2.6px;
+  }
+
+  .spf {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    fill: #ff7a00 !important;
+  }
+
+  .small {
+    font-size: 9.5px;
+    font-weight: 600;
+  }
+</style>

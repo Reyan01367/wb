@@ -1,6 +1,14 @@
 import type { Campaign } from './types';
 
-const ACCESSED = 'Accessed: 12 November 2026';
+/*
+ * TODO before submitting: rewrite the copy in your own words (especially `reflection`),
+ * and paste each source's link from your research document as the second argument of `online()`.
+ */
+
+const ACCESSED = 'Accessed: 20 November 2026';
+
+/** Harvard (Cite Them Right) entry for an online source. */
+const online = (citation: string, url = '') => (url ? `${citation} Available at: ${url} (${ACCESSED}).` : citation);
 
 const COM_B_REF =
   'Michie, S., van Stralen, M.M. and West, R. (2011) ‘The behaviour change wheel: a new method for characterising and designing behaviour change interventions’, Implementation Science, 6(1), p. 42. doi: 10.1186/1748-5908-6-42.';
@@ -8,466 +16,498 @@ const COM_B_REF =
 const EAST_REF =
   'Service, O. et al. (2014) EAST: four simple ways to apply behavioural insights. London: The Behavioural Insights Team.';
 
+const CLAUDE_LOG = {
+  tool: 'Claude (Anthropic)',
+  usage: 'Idea development, first-draft copy and the coded key visuals; I chose, edited and rewrote the final work',
+  link: 'https://claude.ai',
+};
+
 /* ------------------------------------------------------------------ */
 /* 01 — Brand campaign                                                 */
 /* ------------------------------------------------------------------ */
 
-const bupa: Campaign = {
-  slug: 'bupa-body-mot',
+const olivara: Campaign = {
+  slug: 'olivara-500-year-head-start',
   index: '01',
-  brand: 'Bupa',
-  title: 'Book Your Body’s MOT',
-  tagline: 'Men service their cars every year. Their bodies? Never.',
+  brand: 'OLIVARA',
+  title: 'The 500-Year Head Start',
+  tagline: 'Hand over a community that already looks established.',
   briefProject: 'Project 1 — Brand campaign',
-  sector: 'Private healthcare',
-  role: 'Strategy, concept, copy, art direction, photography',
-  tools: ['Own photography', 'Lightroom', 'Photoshop', 'InDesign'],
+  sector: 'Landscape & real estate · wellbeing',
+  role: 'Strategy, concept, copy, art direction, own photography',
+  tools: ['Own photography', 'Typography & layout', 'Claude (AI-assisted)'],
   year: '2026',
-  variant: 'bupa',
+  variant: 'olivara',
   summary:
-    'A brand campaign for Bupa Health Assessments that borrows the one annual check-up British men never skip, the car MOT, and turns it on the driver.',
+    'A B2B brand campaign that sells OLIVARA’s centuries-old Spanish olive trees to UAE developers as the fastest way to make a new community feel finished, trusted and liveable.',
   challenge:
-    'Bupa sells preventative health assessments, but its most at-risk audience, men aged 35–55, is the least likely to seek care until something goes wrong. The task: make proactive health feel as normal and responsible as servicing a car.',
+    'OLIVARA imports mature Spanish heritage olive trees, then supplies and installs them across the UAE. Its buyers are real estate developers, who usually treat trees as a landscaping line decided late and on cost. The task: move OLIVARA from supplier to sales asset, in a market where 73% of Dubai homes are sold before they are built.',
   research: {
     market: [
       {
-        stat: '7m+',
-        text: 'People waiting for NHS consultant-led treatment in England, pushing working adults to consider paying for faster, preventative access.',
-        source: 'NHS England, 2025',
+        stat: '215,700',
+        text: 'Record Dubai residential transactions in 2025, worth over Dh686.6bn and up 30.9% year on year.',
+        source: 'Khaleej Times, 2026a',
       },
       {
-        text: 'The private health category is crowded with reassurance messaging (“peace of mind”, “expert care”) that looks and sounds the same. There is space for a brand to own a concrete, everyday metaphor.',
-        source: 'Competitor audit — own analysis',
+        stat: '73%',
+        text: 'Of Dubai residential sales in 2025 were off-plan: buyers commit to a render, then wait years to move in.',
+        source: 'Cavendish Maxwell, 2026',
+      },
+      {
+        stat: '$2.84bn',
+        text: 'Projected UAE landscaping market by 2030, up from $1.67bn in 2024 (about 9% a year).',
+        source: 'Research and Markets, 2025',
       },
     ],
     audience: [
       {
-        stat: '65%',
-        text: 'Of UK men say they avoid going to the doctor for as long as possible.',
-        source: 'London Medical Laboratory, cited in London Loves Business, n.d.',
+        stat: '40%',
+        text: 'Higher demand for green, wellness-focused projects, along with price and rental premiums.',
+        source: 'Khaleej Times, 2025b',
       },
       {
-        stat: '23%',
-        text: 'Of UK men avoid general health check-ups because they fear discovering a condition.',
-        source: 'Express & Star, 2025',
+        text: 'Leading developers already compete on nature: Ghaf Woods (Majid Al Futtaim), The Wilds (Aldar) and Grand Polo (Emaar).',
+        source: 'Khaleej Times, 2025b',
       },
       {
-        stat: '61%',
-        text: 'Of men report barriers to seeing a GP, with waiting times and inconvenient opening hours the main reasons.',
-        source: 'Men and Boys Coalition, n.d.',
+        text: 'Buyers pay a premium for biophilic, nature-led environments, and shade makes shared spaces usable for more of the year.',
+        source: 'Khaleej Times, n.d.',
       },
     ],
     trend: [
       {
-        text: 'Health optimisation culture (wearables, longevity podcasts, at-home blood tests) is making data-led, proactive health feel aspirational for men rather than anxious.',
-        source: 'Trend analysis — own synthesis',
+        stat: '3.5m',
+        text: 'Trees Dubai plans to plant by 2040, alongside 187 km² of green space.',
+        source: 'Khaleej Times, 2026b',
       },
       {
-        text: 'Men respond to framing health as maintenance and performance rather than vulnerability; “fixing” language lowers the emotional cost of asking for help.',
-        source: 'Trend analysis — own synthesis',
+        stat: 'Dh1m',
+        text: 'Paid per tree by developers already planting olive trees up to 2,500 years old (MAG, Keturah Reserve).',
+        source: 'Khaleej Times, 2025a',
+      },
+      {
+        stat: '2.2°C',
+        text: 'Cooling from green parks in Abu Dhabi. Olive trees tolerate intense water shortage, so they suit the climate.',
+        source: 'Gulf News, 2024; Connor, 2005',
       },
     ],
   },
   insight:
-    'He books his car in every year so a small fault never becomes a big bill, but he has never once done the same for his own body.',
+    'Off-plan buyers are asked to believe in a place that doesn’t exist yet. A young tree takes a decade to say “home”; a 500-year-old olive says it on day one.',
   comB: {
     capability:
-      'Knows check-ups exist, but doesn’t know what a health assessment involves or what it would actually tell him.',
+      'Developers know green sells, but not that mature trees can be sourced, moved and established in UAE conditions, or what that involves.',
     opportunity:
-      'GP access feels slow and inconvenient; socially, “getting checked” reads as admitting something is wrong.',
+      'Landscaping is decided late, by procurement, after the sales launch, so trees never reach the sales and marketing team.',
     motivation:
-      'Automatic: fear of bad news and “if it isn’t broken” optimism. Reflective: health feels like a problem for later.',
+      'Reflective: trees are seen as a cost line, not a sales asset. Automatic: caution about anything that might not survive on site.',
     primary: 'motivation',
   },
   brief: {
-    behaviour: 'Book an annual Bupa Health Assessment before symptoms appear.',
-    audience: 'UK men 35–55, working, car-owning, at the moment their MOT reminder lands.',
-    barrier: 'Avoidance: “If nothing’s wrong, why look?” plus fear of what a test could find.',
-    trigger: 'Reframing and familiarity: borrow a habit he already has (the annual MOT).',
-    idea: 'Book Your Body’s MOT: the body as a vehicle with mileage, advisories and warning lights.',
-    action: 'Scan, pick a date, book an assessment in under two minutes.',
-    measurement: 'Assessment bookings from campaign URLs/QR, cost per booking, brand search uplift.',
+    behaviour: 'Specify OLIVARA heritage olives at masterplan stage, and install a “Show Tree” at sales launch.',
+    audience: 'Marketing directors and masterplanners at UAE developers (Dubai, Abu Dhabi), while launches are being planned.',
+    barrier: '“Trees are a landscaping cost for later”, plus doubt that old trees survive the move.',
+    trigger: 'Reframe the tree as proof: its age becomes a selling point, and its passport becomes reassurance.',
+    idea: 'The 500-Year Head Start: give a new community a history before it has residents.',
+    action: 'Book a grove visit or a Show Tree consultation.',
+    measurement: 'Qualified enquiries, Cityscape meetings booked, Show Trees converted into masterplan orders.',
   },
   idea: {
-    name: 'Book Your Body’s MOT',
-    line: 'No warning light doesn’t mean no fault.',
+    name: 'The 500-Year Head Start',
+    line: 'Completed 2028. Established 1526.',
     description: [
-      'Every execution speaks the language of the garage: mileage, advisories, service history, warning lights. It is a world the audience already finds reassuring and practical, so the conversation shifts from fear to maintenance.',
-      'Media is placed where the metaphor lives: forecourts, garage waiting rooms, MOT reminder emails and drive-time audio. The idea reaches him at the exact moment he is already thinking about servicing something.',
+      'Every new development in the UAE competes with the same glossy renders. OLIVARA can sell the one thing a render can’t show: time. Each heritage olive arrives with centuries behind it, so a community launching today can look, feel and photograph as established from its first day.',
+      'The campaign speaks the developer’s language (handover dates, sales speed, buyer trust) and backs it with the wellbeing case. Shade, cooling and contact with nature make places healthier to live in (Ulrich, 1984), and residents now pay more for them.',
+      'Every visual uses my own photography of the trees, so the bark, the scale and the age are real, not rendered.',
     ],
   },
   executions: [
     {
-      title: 'Forecourt 48-sheet',
-      channel: 'OOH — petrol stations',
+      title: 'Trade press double-page spread',
+      channel: 'Print — Cityscape Global guide & property trade titles',
       description:
-        'Shot on location at an independent garage. The mechanic’s inspection sheet becomes a health checklist.',
-      ratio: '3/1',
-      headline: 'Your car passed. Did you?',
-      sub: 'Book your body’s MOT.',
-      credit: 'Own photography · Lightroom · Photoshop',
+        'My own photograph of a heritage olive, with its age set against a handover date. The dates change with each tree’s passport, so the line is always true.',
+      ratio: '16/10',
+      headline: 'Completed 2028. Established 1526.',
+      sub: 'Heritage olive trees, installed before handover.',
+      art: 'grove',
+      credit: 'Own photography · typography & layout',
     },
     {
-      title: 'Mileage poster',
-      channel: 'OOH — garage waiting rooms',
+      title: 'The Show Tree',
+      channel: 'Experiential — sales galleries',
       description:
-        'A simple calculation (≈70 bpm × 40 years) makes an invisible number feel mechanical and real.',
+        'A heritage olive installed at the sales gallery on launch day, so buyers stand under the community’s first resident. The plaque does the selling.',
       ratio: '4/5',
-      headline: 'At 40, your engine’s done 1.5 billion revs.',
-      sub: 'When was its last service?',
-      credit: 'Own photography · Photoshop · InDesign',
+      headline: 'This tree is 400 years old. Your home will be ready in 2028.',
+      sub: 'Plant the first tree before the first brick.',
+      art: 'plaque',
+      credit: 'Own photography · plaque design',
     },
     {
-      title: 'Warning-light social',
-      channel: 'Instagram / YouTube Shorts',
+      title: 'The Provenance Pack',
+      channel: 'B2B direct mail — 50 target developers',
       description:
-        'Dashboard warning-light icons redrawn as body systems. Each card ends on a one-tap booking link.',
-      ratio: '9/16',
-      headline: 'No warning light doesn’t mean no fault.',
-      sub: 'Book a health assessment.',
-      credit: 'Own photography · Photoshop',
-    },
-    {
-      title: 'MOT reminder partnership',
-      channel: 'CRM — garage partner emails',
-      description:
-        'A co-branded line added to garage MOT reminder emails: the most precisely timed media placement in the plan.',
+        'An olive-wood box for marketing directors: a tree passport (age, grove, origin coordinates), oil from the same grove and an invitation to reserve a tree. It answers the survival doubt with documentation.',
       ratio: '1/1',
-      headline: 'Advisory: blood pressure. Not tested.',
-      sub: 'Your car’s booked. Now you.',
-      credit: 'Own photography · InDesign',
+      headline: 'Every tree arrives with a birth certificate older than the city.',
+      sub: 'Tree passport',
+      art: 'passport',
+      credit: 'Pack & print design',
     },
   ],
   kpis: [
-    { metric: 'Health assessment bookings', target: '+15% vs. same period last year', method: 'Campaign-specific URL and QR attribution' },
-    { metric: 'Cost per booking', target: 'Below current paid-social benchmark', method: 'Media spend ÷ attributed bookings' },
-    { metric: 'Branded search', target: 'Uplift in “Bupa health check” searches', method: 'Google Trends + search console, exposed vs. control regions' },
-    { metric: 'Message take-out', target: '60% correctly recall the MOT idea', method: 'Post-campaign brand tracker' },
+    { metric: 'Qualified developer enquiries', target: '40 in six months', method: 'Campaign landing page and QR codes on print and mailer' },
+    { metric: 'Cityscape meetings', target: '20 booked meetings', method: 'Stand bookings tracked in the CRM' },
+    { metric: 'Show Tree conversions', target: '3 of 5 lead to masterplan orders', method: 'Sales pipeline review' },
+    { metric: 'Target-account engagement', target: '30 of 50 named developers engage', method: 'LinkedIn account-based campaign reporting' },
   ],
-  // TODO: rewrite reflections in your own words once the work is made — markers check these.
   reflection: [
-    'This project taught me that a strong metaphor does strategic work: the MOT frame dissolved the fear barrier faster than any reassurance line I wrote in early drafts.',
-    'Shooting my own photography forced better art direction decisions. Real garages and real hands made the work feel credible in a way stock imagery never did.',
-    'Next time I would test the metaphor with women 35–55 as well; the insight may be broader than the audience I chose.',
+    'My first line, “Plant a legacy”, was written for government buyers. Switching to developers meant dropping legacy for what they are measured on: how fast a community sells and how trusted it feels before it exists.',
+    'Photographing the trees myself mattered. Close-ups of bark and trunk showed age better than any statistic, and they gave the campaign its look.',
+    'The health benefit here is indirect (shade, cooling, nature). I kept it as support rather than the headline, because developers buy on sales first.',
   ],
   references: [
-    'Binet, L. and Field, P. (2013) The long and the short of it: balancing short and long-term marketing strategies. London: Institute of Practitioners in Advertising.',
-    `Express & Star (2025) ‘One in four males avoid health checks through fear of finding something wrong’, 15 April. Available at: https://expressandstar.com/your-world/2025/04/15/one-in-four-males-avoid-health-checks-through-fear-of-finding-something-wrong (${ACCESSED}).`,
-    `London Loves Business (n.d.) ‘“Man up” urges health expert as it may be hard to see your doctor but 65% of men avoid them anyway’. Available at: https://londonlovesbusiness.com/man-up-urges-health-expert-as-it-may-be-hard-to-see-your-doctor-but-65-of-men-avoid-them-anyway/ (${ACCESSED}).`,
-    `Men and Boys Coalition (n.d.) Men’s Health Week survey shows long waiting times and inconvenient opening hours are main reasons men do not go to the GP. Available at: https://www.menandboyscoalition.org.uk/newsevents/mens-health-week-survey-shows-long-waiting-times-and-inconvenient-opening-hours-are-main-reasons-men-do-not-go-to-the-gp (${ACCESSED}).`,
-    COM_B_REF,
-    `NHS England (2025) Consultant-led referral to treatment waiting times. Available at: https://www.england.nhs.uk/statistics/statistical-work-areas/rtt-waiting-times/ (${ACCESSED}).`,
+    online('Cavendish Maxwell (2026) Dubai residential sales 2025.'),
+    'Connor, D.J. (2005) ‘Adaptation of olive (Olea europaea L.) to water-limited environments’, Australian Journal of Agricultural Research, 56(11), pp. 1181–1189.',
+    online('Gulf News (2024) ‘Green parks cool Abu Dhabi by up to 2.2°C, MBZUAI and IBM study finds’.'),
+    online('Khaleej Times (n.d.) ‘UAE’s forest living trend’.'),
+    online('Khaleej Times (2025a) ‘Ancient olive trees replanted in Dubai’.'),
+    online('Khaleej Times (2025b) ‘Green projects offer 40% higher ROI’.'),
+    online('Khaleej Times (2026a) ‘UAE property market entering 2026’.'),
+    online('Khaleej Times (2026b) ‘Dubai to plant 3.5 million trees by 2040’.'),
+    online('Research and Markets (2025) UAE landscaping market.'),
+    'Ulrich, R.S. (1984) ‘View through a window may influence recovery from surgery’, Science, 224(4647), pp. 420–421.',
+    online('Zawya (2026) ‘Abu Dhabi residential sales hit record’.'),
   ],
-  aiLog: [
-    { tool: 'Microsoft Copilot', usage: 'Research assistance: summarising survey sources', link: 'https://copilot.microsoft.com' },
-  ],
+  aiLog: [CLAUDE_LOG],
 };
 
 /* ------------------------------------------------------------------ */
-/* 02 — Behaviour change / social impact                               */
+/* 02 — Behaviour change                                               */
 /* ------------------------------------------------------------------ */
 
-const nhs: Campaign = {
-  slug: 'nhs-number-two-priority',
+const humble: Campaign = {
+  slug: 'humble-the-other-40',
   index: '02',
-  brand: 'NHS Bowel Cancer Screening',
-  title: 'Number Two Priority',
-  tagline: 'The kit’s in the drawer. The idea gets it out.',
-  briefProject: 'Project 2 — Behaviour change for society',
-  sector: 'Public health',
-  role: 'Behavioural strategy, concept, copy, design, motion',
-  tools: ['Illustrator', 'InDesign', 'After Effects', 'Photoshop'],
+  brand: 'The Humble Co.',
+  title: 'The Other 40%',
+  tagline: 'Brushing does 60%. Finish the job.',
+  briefProject: 'Project 2 — Behaviour change',
+  sector: 'Oral health',
+  role: 'Strategy, behavioural diagnosis, concept, copy, art direction',
+  tools: ['COM-B', 'Illustration & typography', 'Claude (AI-assisted)'],
   year: '2026',
-  variant: 'nhs',
+  variant: 'humble',
   summary:
-    'A behaviour change campaign that uses humour, prompts and friction-removal to get more people to complete the NHS bowel screening kit that is already sitting in their home.',
+    'A behaviour change campaign for The Humble Co. that gets young UK adults, especially men, to clean between their teeth every day by showing them the job they leave unfinished.',
   challenge:
-    'The NHS posts a free, simple home test to everyone eligible. Awareness isn’t the problem: the kit arrives. Yet around a third are never returned, and uptake is lowest in the communities with the worst outcomes. This is a textbook intention–action gap.',
+    '74% of UK adults don’t floss daily and only 12% follow a dentist-recommended routine. Most people believe brushing is enough. The task: make cleaning between your teeth a daily habit for the groups who skip it most, 18–24s and men.',
   research: {
     market: [
       {
-        stat: '67.6%',
-        text: 'Bowel screening uptake in England in 2023–24 — 4.7 million of 6.97 million people invited.',
-        source: 'Cancer Research UK, 2025',
+        stat: '74%',
+        text: 'Of UK adults don’t floss daily, and only 12% follow a dentist-recommended cleaning routine.',
+        source: 'Yorkshire Post, 2026',
       },
       {
-        stat: '65.2%',
-        text: 'Uptake in 2024–25, a fall linked partly to newly eligible younger age groups being less likely to take part.',
-        source: 'Bowel Cancer UK, 2025',
+        stat: '62%',
+        text: 'Clean between their teeth regularly. Interdental brushes have overtaken floss, and UK guidance favours them.',
+        source: 'Oral Health Foundation, 2017',
+      },
+      {
+        text: 'TePe already owns the topic on TV (“Little Habits That Last a Lifetime”), so a smaller brand needs a sharper, younger voice.',
+        source: 'Decision Marketing, n.d.',
       },
     ],
     audience: [
       {
-        stat: '20pts',
-        text: 'The deprivation gap: 55.8% uptake in the most deprived fifth of areas vs. 75.8% in the least deprived.',
-        source: 'Cancer Research UK, 2025',
+        stat: '18%',
+        text: 'Of 18–24-year-olds floss daily, compared with 37% of over-55s.',
+        source: 'Dental Nursing, n.d.',
       },
       {
-        text: 'Men, people in deprived areas and some ethnic groups are consistently less likely to participate.',
-        source: 'Cancer Research UK, 2025',
+        stat: '25%',
+        text: 'Of men never floss, compared with 16% of women. Around 35% of adults floss daily.',
+        source: 'YouGov, 2025',
+      },
+      {
+        stat: '37%',
+        text: 'Put real effort into their teeth and gums, against healthy eating (52%) and exercise (47%). 32% of Gen Z would improve their routine with more advice.',
+        source: 'Yorkshire Post, 2026',
       },
     ],
     trend: [
       {
-        text: 'Humour is increasingly used in health communication to reduce stigma around “embarrassing” conditions, following the logic of campaigns such as Dumb Ways to Die.',
-        source: 'Case study analysis — own synthesis',
+        stat: '40%',
+        text: 'Of each tooth’s surface is missed by brushing alone, which cleans only about 60%.',
+        source: 'Decision Marketing, n.d.',
       },
       {
-        text: 'Digital nudges (NHS App notifications, SMS) make it possible to place a prompt at the exact moment of action rather than weeks before it.',
-        source: 'Service et al., 2014',
+        stat: '1 in 4',
+        text: 'UK adults have untreated tooth decay, and 9% show signs of severe gum disease.',
+        source: 'Yorkshire Post, 2026',
+      },
+      {
+        text: 'The NHS recommends cleaning between teeth daily. A 2016 AP investigation questioned the evidence for floss alone, so this campaign says “clean between your teeth”, not “floss”.',
+        source: 'Oral Health Foundation, 2016; HuffPost UK, n.d.',
       },
     ],
   },
   insight:
-    'Nobody decides not to do the test. They just decide not to do it today, and the kit slides into the bathroom drawer for good.',
+    'Nobody rinses 60% of a plate and calls it clean, but that is what brushing alone does to your teeth, and three in four of us stop there.',
   comB: {
     capability:
-      'Psychological: unsure how to take the sample, worried about “doing it wrong”.',
+      'Psychological: people don’t know brushing misses 40%. Physical: floss feels fiddly, and few know interdental brushes exist or which size to use.',
     opportunity:
-      'Physical: no cue at the right moment, so the kit gets forgotten. Social: talking about poo is taboo, especially among men.',
+      'Physical: the toothbrush sits by the sink, the floss (if bought) is in a drawer. Social: nobody talks about it, so skipping feels normal.',
     motivation:
-      'Automatic: disgust and embarrassment. Reflective: “I feel fine, so I don’t need it.”',
+      'Reflective: “brushing is enough”. Automatic: brushing is a habit; cleaning between isn’t attached to anything.',
     primary: 'motivation',
   },
   brief: {
-    behaviour: 'Complete and post back the bowel screening (FIT) kit within 14 days of it arriving.',
-    audience: 'Men 50–74 in England, especially newly eligible 50–54s and those in the most deprived areas.',
-    barrier: 'Disgust and embarrassment, plus no prompt at the moment of action.',
-    trigger: 'Humour (salience), ease (one tiny sample), and an implementation intention prompt.',
-    idea: 'Number Two Priority: own the joke so the embarrassment has nowhere to hide.',
-    action: '“Next time you go, do the kit.” Return in the free envelope.',
-    measurement: 'Kit return rate and time-to-return vs. matched control areas.',
+    behaviour: 'Clean between your teeth once a day, straight after brushing.',
+    audience: 'UK adults 18–34 who brush but don’t clean between, with a lean towards men.',
+    barrier: '“Brushing is enough”, and no cue for the extra step.',
+    trigger: 'Salience (show the missing 40%), habit stacking (“After I brush, I clean between”) and ease (interdental brushes kept beside the toothbrush).',
+    idea: 'The Other 40%: brushing alone leaves the job unfinished.',
+    action: 'Buy the Finish the Job bundle, scan the QR and start a 30-day streak.',
+    measurement: 'Interdental sales uplift, QR scans, 30-day streaks completed, pre/post daily-cleaning survey.',
   },
   idea: {
-    name: 'Number Two Priority',
-    line: 'Next time you go, do the kit.',
+    name: 'The Other 40%',
+    line: 'Brushing misses 40%.',
     description: [
-      'Embarrassment survives on silence. Number Two Priority says the awkward part out loud, with a wink, so the audience laughs instead of looking away. Humour is used to defuse disgust, never to make light of cancer.',
-      'Every touchpoint carries the same implementation intention: “next time you go”. It links the action to a moment that is guaranteed to happen, and the most important placements sit exactly where that moment is.',
+      'Brushing isn’t wrong, it’s unfinished. The campaign never tells people off. It shows the gap, the other 40% of each tooth, and makes closing it the obvious last step.',
+      'The new habit is tied to one people already have. Every execution repeats one plan: “After I brush, I clean between.” Plans in this if-then form make a new behaviour much more likely to happen (Gollwitzer, 1999), and repeating it in the same place makes it automatic over time (Lally et al., 2010).',
+      'The Humble Co. is made by dentists, so the message carries professional trust without sounding like a lecture.',
     ],
   },
   executions: [
     {
-      title: 'Mirror cling',
-      channel: 'In-kit prompt',
+      title: '48-sheet & bus shelter',
+      channel: 'OOH — near universities and gyms',
       description:
-        'A removable sticker inside the kit for the bathroom mirror: the prompt lives where the behaviour happens.',
+        'A single tooth split 60/40: the brushed part bright, the rest shaded. One fact and nothing else to read.',
+      ratio: '3/1',
+      headline: 'Brushing misses 40%.',
+      sub: 'Clean between your teeth. Every day.',
+      art: 'tooth',
+      credit: 'Illustration & typography',
+    },
+    {
+      title: '“Unfinished jobs” social series',
+      channel: 'Instagram / TikTok',
+      description:
+        'Everyday jobs left 60% done: a plate, a half-shaved beard, a car washed down one side. Each ends on the tooth. Made for young men who would never accept a half-done job anywhere else.',
       ratio: '4/5',
-      headline: 'Tomorrow morning: Number Two Priority.',
-      sub: 'One tiny sample. Free envelope. Done.',
-      credit: 'Illustrator · InDesign',
+      headline: 'You wouldn’t wash 60% of a plate.',
+      sub: 'So why brush 60% of your teeth?',
+      art: 'plate',
+      credit: 'Illustration & typography',
     },
     {
-      title: 'Stadium washroom poster',
-      channel: 'OOH — football grounds & pubs',
+      title: 'Finish the Job bundle',
+      channel: 'Retail pack — pharmacies & online',
       description:
-        'Eye-level panels in men’s washrooms reach the core audience in the one place the topic is already on their mind.',
-      ratio: '4/5',
-      headline: 'You’re already here.',
-      sub: 'Next time, bring the kit.',
-      credit: 'Illustrator · Photoshop',
-    },
-    {
-      title: 'NHS App nudge',
-      channel: 'Push notification / SMS',
-      description:
-        'Day-7 reminder triggered when the kit hasn’t been returned: the right prompt at the right time.',
-      ratio: '9/16',
-      headline: 'Your kit’s been home for a week.',
-      sub: 'Number two priority?',
-      credit: 'Figma · After Effects',
-    },
-    {
-      title: 'Barber shop partnership',
-      channel: 'Community — trusted messengers',
-      description:
-        'Barbers in low-uptake postcodes hand out conversation cards, making the topic socially normal where reach is lowest.',
+        'A toothbrush and interdental brushes sold together, with a mirror cling that states the plan. One pack puts the cue and the tool in the same place.',
       ratio: '1/1',
-      headline: '2 in 3 people do the kit.',
-      sub: 'Ask your barber about it.',
-      credit: 'InDesign · Illustrator',
+      headline: 'Finish the job.',
+      sub: 'Brush. Then between.',
+      art: 'pack',
+      credit: 'Pack design',
     },
   ],
   kpis: [
-    { metric: 'Kit return rate', target: '+5 percentage points in campaign areas', method: 'NHS screening hub returns, campaign vs. matched control areas' },
-    { metric: 'Time to return', target: 'Median under 14 days', method: 'Date posted vs. date received at the lab' },
-    { metric: 'Deprivation gap', target: 'Narrow the gap in pilot areas', method: 'Uptake by IMD quintile, pre vs. post' },
-    { metric: 'Embarrassment score', target: 'Significant reduction', method: 'Pre/post survey with the target audience' },
+    { metric: 'Interdental sales', target: '+20% in campaign retailers', method: 'Retailer sales data vs. matched control stores' },
+    { metric: 'Daily cleaning (self-reported)', target: '+10 pts among 18–34s', method: 'Pre/post survey' },
+    { metric: '30-day streaks', target: '25% of QR sign-ups complete one', method: 'Streak tracker data' },
+    { metric: 'Repeat purchase', target: 'Refill bought within 90 days', method: 'Online and loyalty data' },
   ],
-  // TODO: rewrite reflections in your own words once the work is made — markers check these.
   reflection: [
-    'COM-B stopped me from writing yet another awareness campaign. Once I saw that the kit was already in people’s homes, the brief became about prompts and feelings, not information.',
-    'The hardest judgement was tone. The lines I kept joke about the situation, never the disease, because humour that trivialises risk can backfire.',
-    'If I took this further I would design it as a randomised trial with the screening hubs, because attribution is the weakest part of most behaviour change work.',
+    'I chose The Humble Co. over TePe because TePe has already run a TV campaign on this exact behaviour. A smaller, dentist-made brand needed a sharper idea to be noticed.',
+    'The research changed my wording. The evidence for floss alone is debated, so I wrote “clean between your teeth” throughout. Being accurate made the message stronger, not weaker.',
+    'COM-B showed that knowledge isn’t the real problem; habit is. That is why the pack and the mirror cling matter more than the poster.',
   ],
   references: [
-    `Bowel Cancer UK (2025) People in their 50s urged to complete bowel cancer screening. Available at: https://www.bowelcanceruk.org.uk/news-and-blogs/news/people-in-their-50s-urged-to-complete-bowel-cancer-screening/ (${ACCESSED}).`,
-    `Cancer Research UK (2025) Bowel cancer screening: access and inequalities. Available at: https://www.cancerresearchuk.org/health-professional/cancer-screening/bowel-cancer-screening/access-and-inequalities (${ACCESSED}).`,
+    online('Decision Marketing (n.d.) ‘TePe’s first TV campaign’.'),
+    online('Dental Nursing (n.d.) ‘Building better habits’.'),
     'Gollwitzer, P.M. (1999) ‘Implementation intentions: strong effects of simple plans’, American Psychologist, 54(7), pp. 493–503.',
+    online('HuffPost UK (n.d.) ‘Do you really need to floss every day?’.'),
+    'Lally, P. et al. (2010) ‘How are habits formed: modelling habit formation in the real world’, European Journal of Social Psychology, 40(6), pp. 998–1009.',
     COM_B_REF,
-    EAST_REF,
-    'Witte, K. (1992) ‘Putting the fear back into fear appeals: the extended parallel process model’, Communication Monographs, 59(4), pp. 329–349.',
+    online('Oral Health Foundation (2016) Flossophy: interdental cleaning is important.'),
+    online('Oral Health Foundation (2017) Interdental brushes overtake floss.'),
+    online('YouGov (2025) How clean are Brits?'),
+    online('Yorkshire Post (2026) Oral-B survey of 2,000 UK adults.'),
   ],
-  aiLog: [
-    { tool: 'Microsoft Copilot', usage: 'Research assistance: locating screening statistics', link: 'https://copilot.microsoft.com' },
-  ],
+  aiLog: [CLAUDE_LOG],
 };
 
 /* ------------------------------------------------------------------ */
 /* 03 — FMCG                                                           */
 /* ------------------------------------------------------------------ */
 
-const nivea: Campaign = {
-  slug: 'nivea-sun-chance-of-uv',
+const altruist: Campaign = {
+  slug: 'altruist-shirts-off-spf-on',
   index: '03',
-  brand: 'NIVEA SUN',
-  title: 'Cloudy With a Chance of UV',
-  tagline: 'Sunscreen isn’t a souvenir.',
-  briefProject: 'Project 3 — FMCG',
-  sector: 'FMCG — suncare & skin health',
-  role: 'Strategy, concept, copy, AI image direction',
-  tools: ['Figma Weave', 'Photoshop', 'Illustrator', 'After Effects'],
+  brand: 'Altruist',
+  title: 'Shirts Off, SPF On.',
+  tagline: 'Made by a skin cancer surgeon. About the price of a pint.',
+  briefProject: 'Project 3 — FMCG campaign',
+  sector: 'Sun care · skin cancer prevention',
+  role: 'Strategy, concept, copy, art direction',
+  tools: ['Illustration & typography', 'Pack & retail design', 'Claude (AI-assisted)'],
   year: '2026',
-  variant: 'nivea',
+  variant: 'altruist',
   summary:
-    'An always-on FMCG campaign for NIVEA SUN UV Face that turns the British weather forecast into a daily reason to apply SPF, growing sales outside the holiday season.',
+    'An FMCG campaign that puts Altruist’s £5.75 dermatologist-made SPF50 in front of British men at the moment the shirt comes off: parks, beer gardens and the BBQ aisle.',
   challenge:
-    'In the UK, sunscreen is packed for Spain and forgotten at home. For NIVEA SUN that means a short, holiday-driven sales window; for public health it means avoidable skin damage on grey days. One behaviour solves both: daily SPF as the last step of a morning routine.',
+    'Men are 69% more likely to die from melanoma than women, and 41% never use sunscreen in a UK summer. Altruist is made by a skin cancer surgeon and costs about the same as a pint, yet sun care advertising rarely talks to men. The task: grow Altruist in Tesco by making SPF part of a British man’s summer, not just his holiday.',
   research: {
     market: [
       {
-        stat: '17.5k',
-        text: 'New melanoma skin cancer cases in the UK each year.',
-        source: 'Cancer Research UK, n.d.',
+        stat: '250',
+        text: 'Tesco stores have stocked Altruist since February 2025. SPF50 100ml costs £5.75, kept low by small margins and little marketing.',
+        source: 'Altruist, 2025; Fundraising, n.d.',
       },
       {
-        stat: '86%',
-        text: 'Of melanoma skin cancer cases in the UK are preventable.',
-        source: 'Cancer Research UK, n.d.',
+        stat: '48%',
+        text: 'Of UK adults now use SPF daily, up from 22% in 2024, as sun care moves from seasonal to daily. The global category is worth $17.2bn.',
+        source: 'Croda Beauty, 2025; Cosmetics Business, 2026',
+      },
+      {
+        text: 'Fewer than 6 in 10 UK adults have bought any sunscreen in the last two years.',
+        source: 'Cancer Research UK, 2026b',
       },
     ],
     audience: [
       {
-        stat: '56%',
-        text: 'Of 18–34 year-olds in Great Britain were sunburnt at least once in 2022 (vs. 40% of all adults).',
-        source: 'British Association of Dermatologists, 2022',
+        stat: '41%',
+        text: 'Of men never use sunscreen in a UK summer (35% of all adults).',
+        source: 'Melanoma Focus, 2026',
       },
       {
-        stat: '35%',
-        text: 'Of UK adults don’t wear sunscreen from May to September at home.',
-        source: 'Melanoma Focus, 2026',
+        stat: '69%',
+        text: 'More likely to die from melanoma if you are a man. Women’s death rates are falling; men’s are not.',
+        source: 'Cancer Research UK, n.d.',
+      },
+      {
+        stat: '2 in 5',
+        text: 'Of men’s melanomas are on the torso, possibly linked to going shirtless.',
+        source: 'Cancer Research UK, n.d.',
       },
     ],
     trend: [
       {
-        stat: '80%',
-        text: 'Up to 80% of UV radiation can pass through light cloud: the grey-sky myth is the problem.',
-        source: 'World Health Organization, 2017',
+        stat: '20,000+',
+        text: 'UK melanoma cases in 2022, a record, rising to 26,500 a year by 2040. Almost 9 in 10 are caused by UV.',
+        source: 'Cancer Research UK, 2026a',
       },
       {
-        text: '“Skinification”: Gen Z and millennials treat skincare as a daily ritual, and SPF is increasingly framed online as the best anti-ageing step. The habit slot already exists.',
-        source: 'Trend analysis — own synthesis',
+        stat: '36%',
+        text: 'Of Gen Z apply SPF daily, against 24% of all adults, yet tanning and sunbeds are coming back.',
+        source: 'Croda Beauty, 2025',
+      },
+      {
+        stat: '25%',
+        text: 'Of UK adults have never heard of the UV index.',
+        source: 'Melanoma Focus, 2026',
       },
     ],
   },
   insight:
-    'Brits check the weather every morning to decide what to wear, and use it as proof they don’t need sunscreen.',
+    'Men think sunscreen is for holidays, but their melanomas start at home: two in five are on the torso they bare on the first warm Saturday.',
   comB: {
     capability:
-      'Psychological: believes UV is about heat and sunshine, not daylight. Doesn’t know the UV index.',
+      'Psychological: they underestimate British sun (a quarter of adults have never heard of the UV index) and don’t link a pink back with cancer.',
     opportunity:
-      'Physical: SPF lives in the holiday bag, not the bathroom shelf. Social: daily SPF is seen as a “skincare person” thing.',
+      'Social: SPF reads as a beauty or holiday product, not something mates use at the park. Physical: sunscreen isn’t there when the shirt comes off.',
     motivation:
-      'Automatic: no habit cue. Reflective: “It’s cloudy, I’ll be fine.”',
-    primary: 'capability',
+      'Reflective: “I don’t burn in England.” Automatic: going shirtless is spontaneous, so nobody plans for it.',
+    primary: 'opportunity',
   },
   brief: {
-    behaviour: 'Apply face SPF every morning as the final step of a skincare routine, all year round.',
-    audience: 'UK 18–34s with a basic skincare routine, at the moment they check the weather.',
-    barrier: 'The grey-sky myth, plus no habit cue outside the holidays.',
-    trigger: 'Salience (make invisible UV visible) and prompts (attach SPF to the weather check).',
-    idea: 'Cloudy With a Chance of UV: rewrite the British forecast so it always ends with SPF.',
-    action: 'Make NIVEA SUN UV Face step three of your morning routine.',
-    measurement: 'Off-season (Oct–Apr) sales, repeat purchase rate, and household penetration.',
+    behaviour: 'Put on SPF50 before taking the shirt off on warm UK days.',
+    audience: 'UK men 20–45 who rarely or never use sunscreen at home; Tesco shoppers.',
+    barrier: 'SPF is seen as a holiday or beauty product, and nobody around them uses it.',
+    trigger: 'Social norms and timely prompts: put the message, and the product, where the shirt comes off.',
+    idea: 'Shirts Off, SPF On: a simple rule for the British summer, backed by a skin cancer surgeon.',
+    action: 'Pick up Altruist SPF50 in the Tesco BBQ aisle with the rest of the weekend shop.',
+    measurement: 'Sales in BBQ-aisle placements, male buyer share (Clubcard), pre/post “used SPF last weekend” survey, QR scans.',
   },
   idea: {
-    name: 'Cloudy With a Chance of UV',
-    line: 'Every day is an SPF day.',
+    name: 'Shirts Off, SPF On.',
+    line: 'Shirts off? SPF on.',
     description: [
-      'The forecast is the most-checked piece of British content every morning, so the campaign hijacks it. Weather-app style visuals show the live UV index on grey days and always end with the same advice: apply anyway.',
-      'All key visuals were generated and art-directed in Figma Weave, then retouched in Photoshop: overcast British streets lit with an unexpected UV glow, making an invisible risk visible.',
+      'The campaign gives men a rule, not a lecture. “Shirts off, SPF on” is short enough to shout across a park, and it links sunscreen to a moment they already know.',
+      'Authority does the persuading. Altruist was founded by consultant dermatologist and skin cancer surgeon Dr Andrew Birnie, who treats skin cancer patients every day. At £5.75, price is no excuse.',
+      'Media goes where the behaviour happens (parks, beer gardens, Sunday-league pitches and the Tesco BBQ aisle), so the prompt arrives at the moment of action (Service et al., 2014).',
     ],
   },
   executions: [
     {
-      title: 'Live UV forecast DOOH',
-      channel: 'Digital OOH — commuter stations',
+      title: 'Park & beer-garden 48-sheet',
+      channel: 'OOH — parks, beer gardens, seaside routes',
       description:
-        'Screens pull the real UV index by location each morning. Copy updates automatically, so grey days get the strongest message.',
-      ratio: '9/16',
-      headline: 'Manchester. 14°. Cloudy. UV 5.',
-      sub: 'Apply anyway.',
-      credit: 'AI-generated — Figma Weave · Photoshop',
-    },
-    {
-      title: 'Weather-triggered programmatic',
-      channel: 'Mobile — weather apps',
-      description:
-        'Ads served only when the UV index is 3+ and cloud cover is high: the exact moment the myth is strongest.',
-      ratio: '1/1',
-      headline: 'Feels like 14°. UV says otherwise.',
-      sub: 'Every day is an SPF day.',
-      credit: 'AI-generated — Figma Weave · Illustrator',
-    },
-    {
-      title: 'Step Three pack sleeve',
-      channel: 'Retail — Boots & Superdrug',
-      description:
-        'A limited-edition sleeve positions UV Face as “Step 3” of a morning routine, building a habit cue into the product itself.',
-      ratio: '4/5',
-      headline: 'Cleanse. Moisturise. Forecast.',
-      sub: 'Step three, every morning.',
-      credit: 'AI-generated — Figma Weave · Photoshop',
-    },
-    {
-      title: 'Grey-day 48-sheet',
-      channel: 'OOH — roadside',
-      description:
-        'A heavy, overcast street scene with skin glowing in UV light: the invisible made visible.',
+        'Big, bright and readable from a picnic blanket. The torso fact gives the warning; the price takes away the excuse.',
       ratio: '3/1',
-      headline: 'Cloudy with a chance of UV.',
-      sub: 'NIVEA SUN UV Face SPF50.',
-      credit: 'AI-generated — Figma Weave · Photoshop',
+      headline: 'Shirts off? SPF on.',
+      sub: '2 in 5 men’s melanomas are on the torso.',
+      art: 'bottle',
+      credit: 'Illustration & typography',
+    },
+    {
+      title: '“Doctor’s Note” limited pack',
+      channel: 'Pack — limited summer edition',
+      description:
+        'The bottle wears a prescription label from the brand’s founder, turning a doctor-made brand into doctor’s orders. (Wording to be approved by Dr Birnie.)',
+      ratio: '4/5',
+      headline: 'Apply before the shirt comes off.',
+      sub: 'Dr Andrew Birnie, skin cancer surgeon',
+      art: 'rx',
+      credit: 'Pack design',
+    },
+    {
+      title: 'BBQ-aisle shelf barker & bundle',
+      channel: 'Retail — Tesco, May to August',
+      description:
+        'Altruist placed next to the burgers and buns, with a shelf barker that makes SPF part of the weekend shop.',
+      ratio: '1/1',
+      headline: 'Burgers. Buns. SPF50.',
+      sub: 'Altruist SPF50 100ml',
+      art: 'shelf',
+      credit: 'Retail design',
     },
   ],
   kpis: [
-    { metric: 'Off-season sales', target: '+20% Oct–Apr vs. prior year', method: 'Retailer EPOS data (Boots, Superdrug)' },
-    { metric: 'Repeat purchase', target: 'Second purchase within 60 days', method: 'Loyalty card panel data' },
-    { metric: 'Household penetration', target: 'Growth among 18–34s', method: 'Kantar-style consumer panel' },
-    { metric: 'Belief shift', target: '“UV passes through cloud”: +25pts', method: 'Pre/post awareness survey' },
+    { metric: 'Sales in BBQ placements', target: '+25% vs. stores without', method: 'Tesco sales data, test vs. control stores' },
+    { metric: 'Male buyer share', target: '+10 pts among men 20–45', method: 'Tesco Clubcard data' },
+    { metric: 'Behaviour', target: '+15 pts “used SPF last weekend”', method: 'Pre/post survey of men 20–45' },
+    { metric: 'Engagement', target: 'QR sign-ups to UV-index alerts', method: 'QR and sign-up analytics' },
   ],
-  // TODO: rewrite reflections in your own words once the work is made — markers check these.
   reflection: [
-    'Byron Sharp’s argument that growth comes from penetration changed my objective: instead of a summer burst, I designed an always-on habit cue to win more buyers more often.',
-    'Figma Weave was a steep learning curve. My first generations looked generic; the breakthrough came from prompting with light and weather references rather than describing the product.',
-    'I am conscious that the brand benefits commercially from a health message. I kept every claim tied to published evidence so the campaign informs rather than scares.',
+    'I chose men because the research kept pointing there: they use sunscreen least and die from melanoma most. Talking to everyone would have hidden the people most at risk.',
+    'Altruist barely advertises, which keeps the price low. So I designed media that works hard for little money: the pack, the shelf and a few well-placed outdoor sites.',
+    'The Doctor’s Note pack borrows the founder’s authority. On a live brief I would get his approval for every word and check the claims against the ASA’s rules on health claims.',
   ],
   references: [
-    `British Association of Dermatologists (2022) 40% of Brits sunburnt in 2022’s extreme heatwave. Available at: https://www.skinhealthinfo.org.uk/40-of-brits-sunburnt-in-2022s-extreme-heatwave (${ACCESSED}).`,
-    `Cancer Research UK (n.d.) Melanoma skin cancer statistics. Available at: https://www.cancerresearchuk.org/health-professional/cancer-statistics/statistics-by-cancer-type/melanoma-skin-cancer (${ACCESSED}).`,
-    `Melanoma Focus (2026) 1 in 9 Scottish adults have deliberately burnt their skin. Available at: https://melanomafocus.org/news-blog/1-in-9-scottish-adults-have-deliberately-burnt-their-skin/ (${ACCESSED}).`,
+    online('Altruist (2025) Launch into Tesco.'),
+    online('Cancer Research UK (n.d.) Melanoma death rates in men, via inkl.'),
+    online('Cancer Research UK (2026a) Skin cancer cases hit record high.'),
+    online('Cancer Research UK (2026b) Most people haven’t bought sunscreen.'),
+    online('Cosmetics Business (2026) Top 5 sun care trends.'),
+    online('Croda Beauty (2025) Trends shaping sun protection.'),
+    EAST_REF,
+    online('Fundraising (n.d.) Altruist founders.'),
+    online('Melanoma Focus (2026) 1 in 9 UK adults deliberately burnt.'),
     COM_B_REF,
-    'Sharp, B. (2010) How brands grow: what marketers don’t know. Oxford: Oxford University Press.',
-    `World Health Organization (2017) Radiation: ultraviolet (UV) radiation and skin cancer. Available at: https://www.who.int/news-room/questions-and-answers/item/radiation-ultraviolet-(uv)-radiation-and-skin-cancer (${ACCESSED}).`,
   ],
-  aiLog: [
-    { tool: 'Figma Weave', usage: 'Visual content: all key visuals generated and art-directed', link: 'https://weave.figma.com/' },
-    { tool: 'Adobe Firefly (Photoshop Generative Fill)', usage: 'Visual content: retouching and extending backgrounds', link: 'https://firefly.adobe.com/' },
-    { tool: 'Microsoft Copilot', usage: 'Research assistance: summarising suncare survey sources', link: 'https://copilot.microsoft.com' },
-  ],
+  aiLog: [CLAUDE_LOG],
 };
 
-export const campaigns: Campaign[] = [bupa, nhs, nivea];
+export const campaigns: Campaign[] = [olivara, humble, altruist];
 
 export const getCampaign = (slug: string) => campaigns.find((c) => c.slug === slug);
 

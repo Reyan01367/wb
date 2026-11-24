@@ -20,13 +20,20 @@ npm run dev        # http://localhost:4321
 
 ### Adding your real visuals
 
-Put images in `public/media/…`, then set `image` on an execution (or `cover` on a campaign):
+Every creative output is drawn in code (`src/components/poster/`), one composition per `art` key.
 
-```ts
-{ title: 'Forecourt 48-sheet', image: '/media/bupa/forecourt.jpg', ... }
+- **Own photography (OLIVARA):** save the photo in `public/media/olivara/` and set `photo` on the execution. It is placed inside the layout, with the headline on top:
+  ```ts
+  { title: 'Trade press double-page spread', art: 'grove', photo: '/media/olivara/tree-01.jpg', ... }
+  ```
+- **Finished artwork:** set `image` on an execution (or `cover` on a campaign) to replace the drawn visual entirely.
+
+### Exporting the creative outputs
+
+```bash
+npm run build && npx astro preview --port 4400
+npm run export:outputs   # in a second terminal; PNGs land in submission/creative-outputs/
 ```
-
-Until an image is set, each slot renders a typographic key visual in that campaign's art direction.
 
 ### Video
 

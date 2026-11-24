@@ -1,0 +1,179 @@
+---
+/** Altruist in the BBQ aisle: on the shelf between the burgers and the buns. */
+import AltruistBottle from './AltruistBottle.astro';
+import { sentences } from './text';
+
+interface Props {
+  headline: string;
+  sub?: string;
+}
+
+const { headline, sub } = Astro.props;
+---
+
+<div class="shelf">
+  <p class="shelf__aisle">Aisle 12 · Summer BBQ</p>
+
+  <div class="shelf__row" aria-hidden="true">
+    <svg class="shelf__buns" viewBox="0 0 120 90">
+      <path d="M8 20c0-10 6-16 16-16h72c10 0 16 6 16 16v62H8z" fill="#f3dfb8" />
+      <ellipse cx="60" cy="52" rx="42" ry="24" fill="#d99a4e" />
+      <path d="M40 44h4M58 38h4M74 46h4M50 58h4M68 60h4" stroke="#fff4dc" stroke-width="2.4" stroke-linecap="round" />
+      <text x="60" y="18" text-anchor="middle">BUNS</text>
+    </svg>
+    <svg class="shelf__burgers" viewBox="0 0 120 70">
+      <rect x="4" y="4" width="112" height="62" rx="4" fill="#c8372d" />
+      <rect x="14" y="30" width="92" height="28" rx="3" fill="#7a2a1c" />
+      <text x="60" y="22" text-anchor="middle">BURGERS</text>
+    </svg>
+    <div class="shelf__bottles">
+      <AltruistBottle />
+      <AltruistBottle />
+    </div>
+  </div>
+
+  <div class="shelf__edge">
+    <span class="shelf__ticket">
+      <b>£5.75</b>
+      {sub && <small>{sub}</small>}
+    </span>
+  </div>
+
+  <div class="shelf__barker">
+    <p>{sentences(headline).map((line) => <span>{line}</span>)}</p>
+    <span class="shelf__barker-foot">Made by a skin cancer surgeon</span>
+  </div>
+</div>
+
+<style>
+  .shelf {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #eef1f4 0%, #dde2e8 54%, #c9cfd6 100%);
+    color: #141414;
+    overflow: hidden;
+  }
+
+  .shelf__aisle {
+    position: absolute;
+    top: 5cqmin;
+    left: 6cqmin;
+    padding: 0.5em 1em;
+    background: #1f2a44;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: clamp(6px, 2.4cqmin, 12px);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .shelf__row {
+    position: absolute;
+    left: 6cqmin;
+    right: 6cqmin;
+    top: 14cqmin;
+    height: 30cqmin;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .shelf__row text {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+
+  .shelf__buns {
+    width: 30cqmin;
+  }
+
+  .shelf__buns text {
+    fill: #8a4b17;
+  }
+
+  .shelf__burgers {
+    width: 26cqmin;
+  }
+
+  .shelf__burgers text {
+    fill: #fff;
+  }
+
+  .shelf__bottles {
+    display: flex;
+    gap: 1.4cqmin;
+    height: 100%;
+  }
+
+  .shelf__bottles :global(svg) {
+    height: 100%;
+    filter: drop-shadow(0 1cqmin 1.4cqmin rgb(0 0 0 / 0.2));
+  }
+
+  .shelf__edge {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 44cqmin;
+    height: 7cqmin;
+    background: linear-gradient(180deg, #fafafa, #e6e6e6);
+    border-top: 1.2cqmin solid #b8bec6;
+    box-shadow: 0 1.4cqmin 2cqmin rgb(0 0 0 / 0.15);
+  }
+
+  .shelf__ticket {
+    position: absolute;
+    right: 8cqmin;
+    top: 0.6cqmin;
+    display: flex;
+    align-items: center;
+    gap: 1.6cqmin;
+    padding: 0.6cqmin 1.6cqmin;
+    background: #ffd24a;
+    font-size: clamp(6px, 2cqmin, 11px);
+  }
+
+  .shelf__ticket b {
+    font-size: 3.4cqmin;
+    font-weight: 800;
+  }
+
+  .shelf__barker {
+    position: absolute;
+    left: 50%;
+    top: 51cqmin;
+    width: 72cqmin;
+    display: grid;
+    gap: 2cqmin;
+    padding: 5cqmin 6cqmin;
+    border-radius: 0 0 2cqmin 2cqmin;
+    background: #ffb000;
+    box-shadow: 0 2cqmin 4cqmin rgb(0 0 0 / 0.2);
+    transform: translateX(-50%) rotate(-2deg);
+    transform-origin: top center;
+  }
+
+  .shelf__barker p {
+    font-size: 10cqmin;
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+  }
+
+  .shelf__barker span {
+    display: block;
+  }
+
+  .shelf__barker p span:last-child {
+    color: #fff;
+    text-shadow: 0.6cqmin 0.6cqmin 0 #141414;
+  }
+
+  .shelf__barker-foot {
+    font-size: 3cqmin;
+    font-weight: 600;
+  }
+</style>

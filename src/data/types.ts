@@ -1,4 +1,7 @@
-export type PosterVariant = 'bupa' | 'nhs' | 'nivea';
+export type PosterVariant = 'olivara' | 'humble' | 'altruist';
+
+/** The composition drawn for a creative output (see PosterArt). */
+export type Art = 'grove' | 'plaque' | 'passport' | 'tooth' | 'plate' | 'pack' | 'bottle' | 'rx' | 'shelf';
 
 export type Ratio = '16/10' | '4/5' | '1/1' | '9/16' | '3/1';
 
@@ -17,9 +20,12 @@ export interface Execution {
   /** Headline rendered on the generated key visual when no `image` is supplied. */
   headline: string;
   sub?: string;
-  /** Path under /public, e.g. '/media/bupa/garage-48sheet.jpg'. Overrides the generated visual. */
+  art: Art;
+  /** Own photograph placed inside the layout (OLIVARA arts), e.g. '/media/olivara/tree-01.jpg'. */
+  photo?: string;
+  /** Finished artwork under /public. Replaces the generated visual entirely. */
   image?: string;
-  /** How the visual was made — shown as a credit tag (brief requires own photography + AI). */
+  /** How the visual was made, shown as a credit tag. */
   credit: string;
 }
 

@@ -15,20 +15,22 @@ import { site } from '../../data/site';
     </div>
   </div>
 
-  <div class="wrap">
-    <p class="mono eyebrow about__awards-title">Recognition</p>
-    <ul class="awards">
-      {
-        site.awards.map((a) => (
-          <li class="award" data-reveal>
-            <span class="mono muted">{a.year}</span>
-            <span class="award__title">{a.title}</span>
-            <span class="muted">{a.org}</span>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
+  {site.awards.length > 0 && (
+    <div class="wrap">
+      <p class="mono eyebrow about__awards-title">Recognition</p>
+      <ul class="awards">
+        {
+          site.awards.map((a) => (
+            <li class="award" data-reveal>
+              <span class="mono muted">{a.year}</span>
+              <span class="award__title">{a.title}</span>
+              <span class="muted">{a.org}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  )}
 </section>
 
 <style>

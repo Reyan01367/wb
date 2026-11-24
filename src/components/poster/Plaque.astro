@@ -1,0 +1,177 @@
+---
+/** OLIVARA Show Tree: a heritage olive in the sales gallery, with a bronze plaque. */
+import OliveTree from './OliveTree.astro';
+
+interface Props {
+  headline: string;
+  sub?: string;
+  photo?: string;
+}
+
+const { headline, sub, photo } = Astro.props;
+---
+
+<div class:list={['plaque', { 'plaque--photo': photo }]}>
+  {
+    photo ? (
+      <img class="plaque__photo" src={photo} alt="" />
+    ) : (
+      <div class="plaque__scene" aria-hidden="true">
+        <span class="plaque__light" />
+        <span class="plaque__floor" />
+        <OliveTree class="plaque__tree" />
+        <span class="plaque__planter" />
+      </div>
+    )
+  }
+
+  <p class="plaque__label">Sales gallery · Launch day</p>
+
+  <div class="plaque__plate">
+    <p class="plaque__meta">No. 0417 · Olea europaea · Spain</p>
+    <p class="plaque__head">{headline}</p>
+    {sub && <p class="plaque__sub">{sub}</p>}
+    <p class="plaque__mark">OLIVARA</p>
+  </div>
+</div>
+
+<style>
+  .plaque {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #34402a 0%, #222b1a 78%);
+    color: #f1ead9;
+  }
+
+  .plaque__photo,
+  .plaque__scene {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .plaque--photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgb(20 24 14 / 0.7) 0%, transparent 50%);
+  }
+
+  .plaque__light {
+    position: absolute;
+    left: 50%;
+    top: -10%;
+    width: 120cqmin;
+    height: 90%;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at 50% 0%, rgb(255 236 190 / 0.38), transparent 65%);
+  }
+
+  .plaque__floor {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 30%;
+    background: linear-gradient(180deg, #b9ad95, #9d9079);
+  }
+
+  .plaque__scene :global(.plaque__tree) {
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    bottom: 27%;
+    width: 92%;
+    height: 66%;
+  }
+
+  .plaque__planter {
+    position: absolute;
+    left: 50%;
+    bottom: 24%;
+    width: 46cqmin;
+    height: 8cqmin;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 40%, #6b5d48, #3e3426 70%);
+    box-shadow: 0 0 0 1.4cqmin #d8cdb6;
+  }
+
+  .plaque__label {
+    position: absolute;
+    top: 6cqmin;
+    left: 6cqmin;
+    z-index: 1;
+    font-family: var(--font-mono);
+    font-size: clamp(7px, 2.6cqmin, 12px);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  .plaque__plate {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    bottom: 6cqmin;
+    width: min(82%, 120cqmin);
+    transform: translateX(-50%);
+    display: grid;
+    gap: 2cqmin;
+    padding: 4.5cqmin 5cqmin;
+    border-radius: 1.2cqmin;
+    background: linear-gradient(135deg, #d7b77c 0%, #a9834a 45%, #c9a564 70%, #8f6b35 100%);
+    box-shadow:
+      inset 0 0 0 0.6cqmin rgb(255 238 200 / 0.35),
+      inset 0 0 0 1.4cqmin rgb(90 62 24 / 0.35),
+      0 2cqmin 5cqmin rgb(0 0 0 / 0.45);
+    color: #2e1f0a;
+    text-align: center;
+    text-shadow: 0 1px 0 rgb(255 238 200 / 0.55);
+  }
+
+  .plaque__meta,
+  .plaque__mark {
+    font-family: var(--font-mono);
+    font-size: clamp(6px, 2.2cqmin, 11px);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .plaque__head {
+    font-family: var(--font-serif);
+    font-size: 6.2cqmin;
+    line-height: 1.05;
+  }
+
+  .plaque__sub {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 3.8cqmin;
+  }
+
+  .plaque__mark {
+    letter-spacing: 0.4em;
+  }
+
+  @container (aspect-ratio > 1.3) {
+    .plaque__scene :global(.plaque__tree) {
+      left: 0;
+      width: 62%;
+    }
+
+    .plaque__planter {
+      left: 31%;
+    }
+
+    .plaque__plate {
+      left: auto;
+      right: 6cqmin;
+      bottom: 50%;
+      width: 46%;
+      transform: translateY(50%);
+    }
+  }
+</style>

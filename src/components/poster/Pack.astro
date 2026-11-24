@@ -1,0 +1,174 @@
+---
+/** The Humble Co. "Finish the Job" bundle, with its mirror cling. */
+interface Props {
+  headline: string;
+  sub?: string;
+}
+
+const { headline, sub } = Astro.props;
+---
+
+<div class="pack">
+  <div class="pack__box" aria-hidden="true">
+    <span class="pack__side" />
+    <div class="pack__front">
+      <p class="pack__brand">the humble co.</p>
+      <p class="pack__head">{headline}</p>
+      <div class="pack__window">
+        <svg viewBox="0 0 120 90">
+          <rect x="10" y="38" width="80" height="11" rx="5.5" fill="#d9b98c" />
+          <rect x="88" y="36" width="24" height="15" rx="4" fill="#f4f1ea" />
+          <path d="M92 36v-5M96 36v-5M100 36v-5M104 36v-5M108 36v-5" stroke="#f4f1ea" stroke-width="2.2" />
+          <g stroke-linecap="round">
+            <path d="M14 66h66" stroke="#ff5d3a" stroke-width="6" />
+            <path d="M14 76h66" stroke="#62b6a3" stroke-width="6" />
+            <path d="M14 18h66" stroke="#f2c94c" stroke-width="6" />
+          </g>
+          <path d="M80 62v8M84 62v8M88 62v8M80 72v8M84 72v8M88 72v8M80 14v8M84 14v8M88 14v8" stroke="#10302e" stroke-width="1.4" />
+        </svg>
+      </div>
+      <p class="pack__contents">1 toothbrush · 6 interdental brushes</p>
+      <span class="pack__badge">Made by dentists</span>
+    </div>
+  </div>
+
+  <div class="pack__cling">
+    <span class="pack__cling-label">Mirror cling</span>
+    <p>{sub}</p>
+    <span class="pack__cling-label">Every day</span>
+  </div>
+</div>
+
+<style>
+  .pack {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 40% 96%, rgb(16 48 46 / 0.22), transparent 40%),
+      linear-gradient(180deg, #cfe8e1 0%, #b9dcd2 100%);
+    color: #10302e;
+  }
+
+  .pack__box {
+    position: absolute;
+    left: 8cqmin;
+    bottom: 9cqmin;
+    width: 50cqmin;
+    height: 74cqmin;
+  }
+
+  .pack__side {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 8cqmin;
+    height: 100%;
+    background: #0a2120;
+    transform: skewY(-20deg);
+    transform-origin: left top;
+  }
+
+  .pack__front {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3cqmin;
+    padding: 5cqmin;
+    background: #10302e;
+    color: #fff;
+    box-shadow: 0 3cqmin 5cqmin rgb(10 33 32 / 0.25);
+  }
+
+  .pack__brand {
+    margin: -5cqmin -5cqmin 0;
+    padding: 2.6cqmin 5cqmin;
+    background: #ff5d3a;
+    font-size: 4cqmin;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .pack__head {
+    font-size: 8.4cqmin;
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+  }
+
+  .pack__window {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding: 2cqmin;
+    border-radius: 2cqmin;
+    background: #dff1ec;
+  }
+
+  .pack__window svg {
+    width: 100%;
+    max-height: 100%;
+  }
+
+  .pack__contents {
+    font-family: var(--font-mono);
+    font-size: clamp(6px, 2.1cqmin, 11px);
+    opacity: 0.85;
+  }
+
+  .pack__badge {
+    position: absolute;
+    right: -5cqmin;
+    top: -4cqmin;
+    display: grid;
+    place-items: center;
+    width: 15cqmin;
+    aspect-ratio: 1;
+    padding: 1.4cqmin;
+    border-radius: 50%;
+    background: #f2c94c;
+    color: #10302e;
+    font-size: 2.4cqmin;
+    font-weight: 800;
+    line-height: 1.05;
+    text-align: center;
+    text-transform: uppercase;
+    transform: rotate(12deg);
+  }
+
+  .pack__cling {
+    position: absolute;
+    right: 5cqmin;
+    top: 6cqmin;
+    display: grid;
+    place-content: center;
+    gap: 1.6cqmin;
+    width: 31cqmin;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      linear-gradient(135deg, rgb(255 255 255 / 0.9) 0 30%, rgb(255 255 255 / 0.55) 30% 34%, rgb(255 255 255 / 0.85) 34%),
+      #fff;
+    box-shadow:
+      0 0 0 0.8cqmin #10302e,
+      0 2cqmin 4cqmin rgb(10 33 32 / 0.2);
+    text-align: center;
+    transform: rotate(-8deg);
+  }
+
+  .pack__cling p {
+    font-size: 5.6cqmin;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    padding-inline: 3cqmin;
+  }
+
+  .pack__cling-label {
+    font-family: var(--font-mono);
+    font-size: clamp(6px, 2cqmin, 10px);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ff5d3a;
+  }
+</style>

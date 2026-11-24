@@ -1,0 +1,139 @@
+---
+/** Altruist "Doctor's Note" pack: the bottle wears a prescription label from its founder. */
+import AltruistBottle from './AltruistBottle.astro';
+
+interface Props {
+  headline: string;
+  sub?: string;
+}
+
+const { headline, sub } = Astro.props;
+---
+
+<div class="rx">
+  <span class="rx__sun" aria-hidden="true" />
+  <p class="rx__kicker"><b>ALTRUIST</b> Limited summer edition</p>
+
+  <AltruistBottle class="rx__bottle" />
+
+  <div class="rx__label">
+    <div class="rx__top">
+      <span class="rx__symbol">℞</span>
+      <span>Doctor’s note</span>
+    </div>
+    <p class="rx__field"><span>Patient</span> You</p>
+    <p class="rx__field"><span>Directions</span></p>
+    <p class="rx__head">{headline}</p>
+    <p class="rx__field"><span>Repeat</span> Every warm day</p>
+    {sub && <p class="rx__sign">{sub}</p>}
+    <span class="rx__barcode" aria-hidden="true" />
+  </div>
+</div>
+
+<style>
+  .rx {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #fff3dc 0%, #ffe2b0 100%);
+    color: #1f2a44;
+    overflow: hidden;
+  }
+
+  .rx__sun {
+    position: absolute;
+    left: -30cqmin;
+    bottom: -30cqmin;
+    width: 90cqmin;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ff9a1f 0 50%, rgb(255 154 31 / 0.25) 51% 64%, transparent 65%);
+  }
+
+  .rx__kicker {
+    position: absolute;
+    top: 6cqmin;
+    left: 6cqmin;
+    font-size: 3cqmin;
+    font-weight: 500;
+  }
+
+  .rx__kicker b {
+    margin-right: 0.6em;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+  }
+
+  .rx :global(.rx__bottle) {
+    position: absolute;
+    left: 8cqmin;
+    bottom: 10%;
+    height: 70%;
+    transform: rotate(-7deg);
+    filter: drop-shadow(2cqmin 3cqmin 3cqmin rgb(120 60 0 / 0.3));
+  }
+
+  .rx__label {
+    position: absolute;
+    right: 6cqmin;
+    top: 24%;
+    width: 50%;
+    display: grid;
+    gap: 1.8cqmin;
+    padding: 4cqmin;
+    border: 0.5cqmin solid #1f2a44;
+    background: #fff;
+    box-shadow: 0 2cqmin 4cqmin rgb(31 42 68 / 0.2);
+    transform: rotate(3deg);
+  }
+
+  .rx__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1.6cqmin;
+    border-bottom: 0.4cqmin solid #1f2a44;
+    font-family: var(--font-mono);
+    font-size: clamp(6px, 2.4cqmin, 12px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .rx__symbol {
+    font-family: var(--font-serif);
+    font-size: 9cqmin;
+    line-height: 0.8;
+    color: #ff7a00;
+  }
+
+  .rx__field {
+    font-family: var(--font-mono);
+    font-size: clamp(6px, 2.3cqmin, 12px);
+  }
+
+  .rx__field span {
+    display: inline-block;
+    min-width: 11ch;
+    color: #6a7591;
+    text-transform: uppercase;
+  }
+
+  .rx__head {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 6.6cqmin;
+    line-height: 1;
+  }
+
+  .rx__sign {
+    padding-top: 1.6cqmin;
+    border-top: 0.3cqmin dashed #6a7591;
+    font-size: 2.8cqmin;
+    font-weight: 600;
+  }
+
+  .rx__barcode {
+    height: 5cqmin;
+    background: repeating-linear-gradient(90deg, #1f2a44 0 0.4cqmin, transparent 0.4cqmin 0.9cqmin, #1f2a44 0.9cqmin 1.6cqmin, transparent 1.6cqmin 2cqmin);
+  }
+</style>

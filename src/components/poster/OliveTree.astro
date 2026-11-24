@@ -1,0 +1,73 @@
+---
+/** An illustrated heritage olive: a gnarled trunk under a silver-green canopy. */
+import { CLUSTERS, leaves } from './olive';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const foliage = leaves(CLUSTERS);
+---
+
+<svg class:list={['tree', className]} viewBox="0 0 400 360" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+  <g class="tree__branches">
+    <path d="M182 206 C170 172 150 150 115 130" stroke-width="13" />
+    <path d="M198 202 C201 160 201 122 198 86" stroke-width="13" />
+    <path d="M216 202 C240 166 264 140 290 115" stroke-width="12" />
+    <path d="M230 216 C262 200 300 190 332 170" stroke-width="9" />
+    <path d="M174 216 C140 206 110 196 80 180" stroke-width="9" />
+  </g>
+  <path class="tree__trunk" d="M146 352C168 322 160 288 174 256C184 234 196 220 198 202H216C206 230 200 262 204 292C206 318 200 338 194 352Z" />
+  <path class="tree__trunk tree__trunk--back" d="M204 352C216 324 214 294 222 266C228 244 222 222 212 202H230C248 224 254 252 246 282C240 312 248 334 268 352Z" />
+  <g class="tree__bark">
+    <path d="M168 340C176 306 172 282 182 256" />
+    <path d="M236 344C230 310 236 284 238 258" />
+    <path d="M188 330C186 300 192 270 200 240" />
+    <ellipse cx="226" cy="300" rx="5" ry="10" />
+  </g>
+  <g class="tree__mass">
+    {CLUSTERS.map(([x, y, spread]) => <ellipse cx={x} cy={y} rx={spread * 1.3} ry={spread * 0.72} />)}
+  </g>
+  <g class="tree__leaves">
+    {
+      foliage.map((leaf) => (
+        <ellipse class={`tone-${leaf.tone}`} cx={leaf.x.toFixed(1)} cy={leaf.y.toFixed(1)} rx="6" ry="1.8" transform={`rotate(${leaf.angle} ${leaf.x.toFixed(1)} ${leaf.y.toFixed(1)})`} />
+      ))
+    }
+  </g>
+</svg>
+
+<style>
+  .tree__branches path {
+    fill: none;
+    stroke: #6e5f4d;
+    stroke-linecap: round;
+  }
+
+  .tree__trunk {
+    fill: #7a6a56;
+  }
+
+  .tree__trunk--back {
+    fill: #685946;
+  }
+
+  .tree__bark path,
+  .tree__bark ellipse {
+    fill: none;
+    stroke: #4d4134;
+    stroke-width: 3;
+    stroke-linecap: round;
+    opacity: 0.55;
+  }
+
+  .tree__mass ellipse {
+    fill: #8a9868;
+    opacity: 0.8;
+  }
+
+  .tone-0 { fill: #6c7b4b; }
+  .tone-1 { fill: #a6b38c; }
+  .tone-2 { fill: #8f9d6d; }
+</style>

@@ -7,7 +7,7 @@ Every part below maps to a marking criterion. If a section doesn't earn marks, i
 | Career pack & readiness for industry (20%) | Career Pack PDF + `/about` + footer documents |
 | Branded personal website (20%) | The site itself: identity, motion, curation, UX |
 | A: Research & insight (20%) | Case study sections 02 Research → 03 Insight → 04 Diagnosis |
-| B: Practical creative skills (20%) | Case study 07 Executions (credit tags show photography / Adobe / Figma Weave) |
+| B: Practical creative skills (20%) | Case study 07 Executions (3 creative outputs per campaign, credit tags show how each was made) |
 | Process, development & reflection (20%) | Weekly Process PDF + case study 09 Reflection + 10 Sources |
 
 **Deliverables on Blackboard**
@@ -29,15 +29,15 @@ Both PDFs start with the **Regent's Mandatory Assignment Cover Sheet** and end w
   ├─ Selected work   3 campaign cards → case studies
   ├─ How I work      the 7-step brief (Behaviour → Measurement)
   ├─ Intro film      professional expertise video (1.5–2 min)    ← brief requirement
-  ├─ About + Awards  biography, Vice-Chancellor's Commendation   ← brief requirement
+  ├─ About           biography (awards section appears only once a real award is added)
   └─ Footer/Contact  email, LinkedIn, CV, Career Pack            ← brief requirement
-/work/bupa-body-mot              Project 1 — Brand campaign       (own photography)
-/work/nhs-number-two-priority    Project 2 — Behaviour change     (Adobe-led)
-/work/nivea-sun-chance-of-uv     Project 3 — FMCG                 (AI: Figma Weave)
+/work/olivara-500-year-head-start   Project 1 — Brand campaign    OLIVARA (own olive tree photography)
+/work/humble-the-other-40           Project 2 — Behaviour change  The Humble Co. (clean between your teeth)
+/work/altruist-shirts-off-spf-on    Project 3 — FMCG              Altruist (men and sunscreen)
 /about           Bio, expertise, toolkit, education, awards, CV/LinkedIn
 ```
 
-The three campaigns form one coherent story: healthcare, seen through private, public and FMCG lenses. That consistency is the personal brand, and it points straight at a healthcare management career.
+The three campaigns form one coherent story: prevention, seen through a B2B brand (healthier places), a daily habit (oral health) and an FMCG product (skin cancer). That consistency is the personal brand, and it points straight at a healthcare management career.
 
 ## 2. Case study template (identical on all 3 projects)
 
@@ -52,12 +52,12 @@ Uses the module's own frameworks (COM-B + the 7-step creative brief) so markers 
 | 04 | Diagnosis | COM-B table with the **primary barrier** highlighted | Analytical thinking |
 | 05 | Creative brief | Behaviour, Audience, Barrier, Trigger, Idea, Action, Measurement | Research → creative link |
 | 06 | The idea | Name, line, rationale | Creative strategy |
-| 07 | Executions | 4 executions across channels + **credit tag** (photography / Adobe / AI) | Practical skills |
+| 07 | Executions | 3 creative outputs across channels (tutor minimum: 2) + **credit tag** | Practical skills |
 | 08 | Measurement | KPIs: metric, target, method | Behaviour change = measurable |
 | 09 | Reflection | 3 points: what worked, what was hard, what next | Reflection |
 | 10 | Sources | Harvard reference list + AI log table | Referencing + AI transparency |
 
-**Brief requirement check:** AI imagery (Figma Weave) → Project 3. Own photography → Project 1. Own Adobe image-making → all three.
+**Brief requirement check:** Own photography → Project 1 (OLIVARA trees). Figma Weave was waived by the tutors, so it is no longer used. Every AI tool that helped is listed in the AI log.
 
 ## 3. Weekly Process PDF
 
@@ -68,7 +68,7 @@ Landscape A4, same fonts and colours as the website (Inter Tight, Instrument Ser
 3. Introduction: aims, why healthcare, career link (½ page)
 4. **Weekly log**: one spread per week, always with the same 5 headings:
    - **Goal this week**
-   - **What I did** (screenshots: research boards, sketches, contact sheets, Figma Weave prompts + outputs, Adobe working files)
+   - **What I did** (screenshots: research boards, sketches, contact sheets, rejected routes, working files)
    - **Decisions + why** (cite sources in-text: *(Michie, van Stralen and West, 2011)*)
    - **Feedback received** (tutor/peer) → **what I changed**
    - **Reflection** using *What? → So what? → Now what?* (Rolfe, Freshwater and Jasper, 2001)
@@ -77,13 +77,13 @@ Landscape A4, same fonts and colours as the website (Inter Tight, Instrument Ser
 | Week | Focus |
 | --- | --- |
 | 1 | Brief analysis, personal positioning (health), project selection |
-| 2 | Research P1 (Bupa): market, audience, trend + competitor audit |
-| 3 | Research P2 (NHS): COM-B diagnosis, behaviour change cases (This Girl Can, Dumb Ways to Die, Lifebuoy) |
-| 4 | Research P3 (NIVEA): FMCG category, skinification trend |
-| 5 | Insight + concept development, all three (show rejected routes!) |
-| 6 | Photo shoot P1: shot list, contact sheets, selects, retouching |
-| 7 | Figma Weave P3: prompt iterations (show bad generations too) |
-| 8 | Adobe production P2 + layouts for all three |
+| 2 | Research P1 (OLIVARA): UAE property market, developers, green-community trend |
+| 3 | Research P2 (flossing): habits, COM-B diagnosis, choosing a brand (The Humble Co. vs Cocofloss vs Georganics; TePe ruled out) |
+| 4 | Research P3 (Altruist): melanoma data, men and sunscreen, sun care market |
+| 5 | Insight + concept development, all three (show rejected routes, e.g. “Plant a legacy”) |
+| 6 | Photo shoot P1: olive trees, contact sheets, selects |
+| 7 | Creative outputs: layouts and iterations for all three |
+| 8 | Tutor update (2+ outputs each, Figma Weave waived) → changes made |
 | 9 | Website build + intro film script/shoot |
 | 10 | Career pack: CV, SWOT, LinkedIn, job role, cover letter |
 | 11 | Formative feedback → changes made (before/after screenshots) |
@@ -115,10 +115,10 @@ Same visual identity as the website, so the rubric's "all elements work together
 
 | Time | Beat | Content |
 | --- | --- | --- |
-| 0:00–0:15 | Hook | "Everyone knows they should get checked. Most don't. That gap is my job." |
+| 0:00–0:15 | Hook | "Everyone knows they should wear sunscreen. Most men don't. That gap is my job." |
 | 0:15–0:35 | Who I am | Name, course, focus on health + behaviour change |
-| 0:35–1:00 | Why it matters | Intention-action gap; screening uptake stats; ads that change minds but not behaviour |
-| 1:00–1:30 | What I bring | COM-B approach, 3 campaigns (B-roll of the work), photography + AI + Adobe skills |
+| 0:35–1:00 | Why it matters | Intention-action gap; 74% don't clean between their teeth daily; 41% of men never use sunscreen |
+| 1:00–1:30 | What I bring | COM-B approach, 3 campaigns (B-roll of the work), photography and design skills |
 | 1:30–1:50 | Where I'm going | Healthcare management: designing services people actually use |
 | 1:50–2:00 | Close | Name, URL, LinkedIn |
 
@@ -129,7 +129,8 @@ Upload to YouTube (unlisted) or Vimeo, then paste the ID into `src/data/site.ts`
 - [ ] All `TODO` values in `src/data/site.ts` replaced (name, email, LinkedIn, awards)
 - [ ] **Awards: list only real ones**
 - [ ] Reflections in `src/data/campaigns.ts` rewritten in your own words after making the work
-- [ ] Own photos / Figma Weave outputs added (`image:` fields) so the generated mock visuals are replaced
+- [ ] Own OLIVARA tree photos added (`photo:` fields on the OLIVARA executions)
+- [ ] Each source's link pasted into `online()` in `src/data/campaigns.ts`, and article titles checked
 - [ ] Every stat re-checked at its source (links in each case study's Sources section)
 - [ ] `public/docs/cv.pdf` and `public/docs/career-pack.pdf` uploaded
 - [ ] Optional: add your own primary research (a short survey, n ≥ 30) to each Research section. It moves Research & Insight towards Band 5–6.

@@ -17,7 +17,7 @@ const isWide = (e: Execution) => e.ratio === '3/1' || e.ratio === '16/10';
     items.map((e) => (
       <article class:list={['exec', { 'exec--wide': isWide(e), 'exec--tall': e.ratio === '9/16' }]} data-reveal>
         <div class="exec__visual" data-cursor={e.channel.split(' ')[0]}>
-          <PosterArt variant={variant} ratio={e.ratio} headline={e.headline} sub={e.sub} image={e.image} />
+          <PosterArt variant={variant} art={e.art} ratio={e.ratio} headline={e.headline} sub={e.sub} photo={e.photo} image={e.image} />
         </div>
         <div class="exec__info">
           <p class="mono muted">{e.channel}</p>

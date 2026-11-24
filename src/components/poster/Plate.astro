@@ -1,0 +1,113 @@
+---
+/** The Humble Co. social card: a plate washed 60% of the way. */
+import { uid } from './text';
+
+interface Props {
+  headline: string;
+  sub?: string;
+}
+
+const { headline, sub } = Astro.props;
+const dirty = uid('dirty');
+---
+
+<div class="plate">
+  <p class="plate__head">{headline}</p>
+
+  <svg class="plate__art" viewBox="0 0 200 200" aria-hidden="true">
+    <defs>
+      <clipPath id={dirty}><path d="M100 100L100 4A96 96 0 0 1 156.4 177.7Z" /></clipPath>
+    </defs>
+    <circle cx="100" cy="100" r="96" fill="#fff" />
+    <circle cx="100" cy="100" r="70" fill="#f8fbfa" stroke="#e3ecea" stroke-width="2" />
+    <g clip-path={`url(#${dirty})`}>
+      <circle cx="100" cy="100" r="96" fill="#f3e2c8" />
+      <path d="M118 40c20-6 40 10 38 30s-24 26-32 14 10-14 4-24-26-14-10-20z" fill="#c4572d" opacity="0.85" />
+      <path d="M150 110c12 4 18 22 8 30s-26 2-24-10 8-24 16-20z" fill="#9b5f2c" opacity="0.8" />
+      <ellipse cx="128" cy="150" rx="12" ry="6" fill="#d98b3a" opacity="0.7" transform="rotate(-30 128 150)" />
+      <circle cx="140" cy="88" r="4.5" fill="#5f9f45" />
+      <circle cx="150" cy="96" r="4" fill="#6fb152" />
+      <circle cx="132" cy="96" r="3.6" fill="#5f9f45" />
+      <circle cx="116" cy="118" r="2" fill="#7a4a1e" />
+      <circle cx="122" cy="72" r="1.6" fill="#7a4a1e" />
+      <circle cx="166" cy="70" r="1.8" fill="#7a4a1e" />
+    </g>
+    <path d="M100 100V4M100 100L156.4 177.7" stroke="#10302e" stroke-width="1.4" stroke-dasharray="4 4" />
+    <path d="M52 62l4-9 4 9 9 4-9 4-4 9-4-9-9-4z M70 138l2.5-6 2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5z" fill="#9fd9cb" />
+    <text x="56" y="108" class="clean">60%</text>
+    <text x="170" y="120" text-anchor="middle" class="missed">40%</text>
+  </svg>
+
+  <div class="plate__foot">
+    {sub && <p class="plate__sub">{sub}</p>}
+    <p class="plate__mark">the humble co.</p>
+  </div>
+</div>
+
+<style>
+  .plate {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 3cqmin;
+    padding: 7cqmin;
+    background: #ff5d3a;
+    color: #fff;
+  }
+
+  .plate__head {
+    font-size: 9.6cqmin;
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    max-width: 13ch;
+  }
+
+  .plate__art {
+    justify-self: center;
+    align-self: center;
+    height: 100%;
+    max-width: 100%;
+    filter: drop-shadow(0 2cqmin 3cqmin rgb(120 30 10 / 0.35));
+  }
+
+  .plate__art text {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .plate__art .clean {
+    fill: #10302e;
+  }
+
+  .plate__art .missed {
+    fill: #fff;
+    paint-order: stroke;
+    stroke: #c4572d;
+    stroke-width: 4px;
+  }
+
+  .plate__foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 4cqmin;
+  }
+
+  .plate__sub {
+    font-size: 4.6cqmin;
+    font-weight: 600;
+    line-height: 1.15;
+    max-width: 20ch;
+  }
+
+  .plate__mark {
+    font-size: 4.2cqmin;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+    color: #10302e;
+  }
+</style>

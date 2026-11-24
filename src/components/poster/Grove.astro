@@ -1,0 +1,209 @@
+---
+/** OLIVARA trade spread: an ancient olive in front of a city still under construction. */
+import OliveTree from './OliveTree.astro';
+import { sentences } from './text';
+
+interface Props {
+  headline: string;
+  sub?: string;
+  photo?: string;
+}
+
+const { headline, sub, photo } = Astro.props;
+---
+
+<div class:list={['grove', { 'grove--photo': photo }]}>
+  {
+    photo ? (
+      <img class="grove__photo" src={photo} alt="" />
+    ) : (
+      <div class="grove__scene" aria-hidden="true">
+        <span class="grove__sun" />
+        <svg class="grove__city" viewBox="0 0 800 140" preserveAspectRatio="xMidYMax slice">
+          <path d="M0 140V96h40V70h26v26h30V52h34v88zM150 140V82h44v-38h22v96zM250 140V60h18V30h20v30h18v80zM340 140V88h56V64h30v76zM470 140V40h28v100zM520 140V74h48v66zM600 140V56h22V20h16v36h20v84zM690 140V92h60V70h50v70z" />
+          <path class="grove__crane" d="M484 40V-4M440 2h110M484 2l-40 0M548 2v26M644 20v-24M610 -2h90M690 -2v30" />
+        </svg>
+        <span class="grove__ground" />
+        <OliveTree class="grove__tree" />
+      </div>
+    )
+  }
+
+  <div class="grove__copy">
+    <p class="grove__kicker">Heritage olive trees · Spain to the UAE</p>
+    <p class="grove__head">{sentences(headline).map((line) => <span>{line}</span>)}</p>
+    {sub && <p class="grove__sub">{sub}</p>}
+  </div>
+
+  <span class="grove__mark">OLIVARA</span>
+</div>
+
+<style>
+  .grove {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #f5ecdb 0%, #eedcb9 100%);
+    color: #2c3320;
+  }
+
+  .grove__photo,
+  .grove__scene {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .grove--photo {
+    color: #f7f1e3;
+  }
+
+  .grove--photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(24 28 16 / 0.72) 0%, transparent 55%);
+  }
+
+  .grove__sun {
+    position: absolute;
+    right: 16%;
+    top: 30%;
+    width: 30cqmin;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff6e2 0 55%, rgb(255 246 226 / 0) 70%);
+  }
+
+  .grove__city {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 24%;
+    width: 100%;
+    height: 16%;
+    fill: #e2d2b2;
+  }
+
+  .grove__crane {
+    fill: none;
+    stroke: #e2d2b2;
+    stroke-width: 4;
+  }
+
+  .grove__ground {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 24%;
+    background: linear-gradient(180deg, #d9c39b, #cdb488);
+  }
+
+  .grove__scene :global(.grove__tree) {
+    position: absolute;
+    right: -6%;
+    bottom: 6%;
+    width: 96%;
+    height: 66%;
+  }
+
+  .grove__copy {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 3cqmin;
+    padding: 7cqmin;
+  }
+
+  .grove__kicker,
+  .grove__sub {
+    font-family: var(--font-mono);
+    font-size: clamp(7px, 2.6cqmin, 13px);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .grove__head {
+    font-family: var(--font-serif);
+    font-size: 10.5cqmin;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+  }
+
+  .grove__head span {
+    display: block;
+  }
+
+  .grove__head span + span {
+    font-style: italic;
+    color: #6b7a3f;
+  }
+
+  .grove--photo .grove__head span + span {
+    color: #d7dfae;
+  }
+
+  .grove__sub {
+    max-width: 34ch;
+    text-transform: none;
+    letter-spacing: 0;
+    font-family: var(--font-sans);
+    font-size: clamp(8px, 3.2cqmin, 16px);
+  }
+
+  .grove__mark {
+    position: absolute;
+    z-index: 1;
+    left: 7cqmin;
+    bottom: 6cqmin;
+    font-family: var(--font-serif);
+    font-size: 5cqmin;
+    letter-spacing: 0.32em;
+    color: #2c3320;
+  }
+
+  .grove--photo .grove__mark {
+    color: #f7f1e3;
+    text-shadow: 0 1px 12px rgb(0 0 0 / 0.4);
+  }
+
+  @container (aspect-ratio > 1.3) {
+    .grove__copy {
+      max-width: 52%;
+      height: 100%;
+      align-content: center;
+    }
+
+    .grove__head {
+      font-size: 10.5cqmin;
+    }
+
+    .grove__scene :global(.grove__tree) {
+      right: -4%;
+      bottom: 5%;
+      width: 56%;
+      height: 92%;
+    }
+
+    .grove__sun {
+      right: 22%;
+      top: 14%;
+      width: 40cqmin;
+    }
+
+    .grove__city {
+      height: 24%;
+      bottom: 22%;
+    }
+
+    .grove__ground {
+      height: 22%;
+    }
+
+    .grove--photo::after {
+      background: linear-gradient(90deg, rgb(24 28 16 / 0.78) 0%, transparent 62%);
+    }
+  }
+</style>

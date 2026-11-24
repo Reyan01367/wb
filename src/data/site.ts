@@ -54,7 +54,7 @@ export const site = {
 
   bio: [
     'I’m a final-year BA (Hons) Advertising student at Regent’s University London with one focus: communication that measurably improves people’s health.',
-    'Health is where advertising matters most and where it most often fails. Everyone knows they should get checked, wear sunscreen or do the screening kit; the gap is behavioural, not informational. My work starts from that gap, using the COM-B model to diagnose the real barrier before a single headline is written.',
+    'Health is where advertising matters most and where it most often fails. Everyone knows they should wear sunscreen or clean between their teeth; the gap is behavioural, not informational. My work starts from that gap, using the COM-B model to diagnose the real barrier before a single headline is written.',
     'Next, I’m moving into healthcare management, carrying a communicator’s understanding of people into how health services are designed, delivered and adopted.',
   ],
 
@@ -75,7 +75,6 @@ export const site = {
     'After Effects',
     'Lightroom',
     'Figma',
-    'Figma Weave',
     'Firefly',
   ],
 
@@ -84,11 +83,8 @@ export const site = {
     { years: 'Next', title: 'Healthcare Management', place: 'Postgraduate study — TODO: programme' },
   ],
 
-  /** TODO — list only awards you have actually received. Remove the array items you don't have. */
-  awards: [
-    { year: '2026', title: 'Vice-Chancellor’s Commendation', org: 'Regent’s University London' },
-    { year: '2025', title: 'TODO: competition / shortlist / commendation', org: 'TODO' },
-  ],
+  /** Real awards only, e.g. { year: '2026', title: 'Shortlist', org: 'D&AD New Blood' }. Sections hide while empty. */
+  awards: [] as { year: string; title: string; org: string }[],
 } as const;
 
 export type Site = typeof site;
